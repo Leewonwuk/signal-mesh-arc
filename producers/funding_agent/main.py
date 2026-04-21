@@ -38,24 +38,32 @@ from typing import Iterator, Optional
 import requests
 from dotenv import load_dotenv
 
-# --- v3 pure-strategy cross-repo import ------------------------------------
-# The v3 repo is a sibling hackerton repo. funding_strategy.py is a pure
-# function module (no side effects) but uses relative imports against
-# src/config_v20.py and src/position_state.py. Adding v3_funding_rate root
-# to sys.path lets us `from src.funding_strategy import ...` cleanly, which
-# keeps this file as a THIN wrapper (design-doc §8.4).
-V3_ROOT = Path(
-    os.environ.get(
-        "ARC_V3_FUNDING_ROOT",
-        r"C:\Users\user\trading\arb\ai_agent_trading_v1.0\v3_funding_rate",
-    )
-)
-if str(V3_ROOT) not in sys.path:
-    sys.path.insert(0, str(V3_ROOT))
+# --- v3 pure-strategy import (vendored) -------------------------------------
+# funding_strategy.py was originally a sibling-repo module. For the public
+# hackathon repo we vendor the 3 pure-function files into v3_vendor/ so the
+# clone runs without depending on the private v3 directory. Setting
+# ARC_V3_FUNDING_ROOT still lets contributors point at the live source repo.
+_VENDOR_DEFAULT = Path(__file__).resolve().parent / "v3_vendor"
+V3_ROOT = Path(os.environ.get("ARC_V3_FUNDING_ROOT", str(_VENDOR_DEFAULT)))
 
-from src.funding_strategy import should_enter, should_exit  # noqa: E402
-from src.config_v20 import FundingArbConfig, load_config  # noqa: E402
-from src.position_state import PositionState  # noqa: E402
+if V3_ROOT == _VENDOR_DEFAULT:
+    # Vendored path — import as a sub-package of producers.funding_agent.
+    from producers.funding_agent.v3_vendor.funding_strategy import (  # noqa: E402
+        should_enter,
+        should_exit,
+    )
+    from producers.funding_agent.v3_vendor.config_v20 import (  # noqa: E402
+        FundingArbConfig,
+        load_config,
+    )
+    from producers.funding_agent.v3_vendor.position_state import PositionState  # noqa: E402
+else:
+    # External v3 repo — original `from src.*` import path.
+    if str(V3_ROOT) not in sys.path:
+        sys.path.insert(0, str(V3_ROOT))
+    from src.funding_strategy import should_enter, should_exit  # noqa: E402
+    from src.config_v20 import FundingArbConfig, load_config  # noqa: E402
+    from src.position_state import PositionState  # noqa: E402
 
 # --- shared signal schema ---------------------------------------------------
 sys.path.insert(0, str(Path(__file__).parent.parent))

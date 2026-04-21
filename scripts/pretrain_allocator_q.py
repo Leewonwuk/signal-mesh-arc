@@ -99,8 +99,15 @@ SPLIT_TRAIN_END = "2026-04-21T23:00:00Z"  # last 30 days (inclusive cap)
 # ─────────────────────────────────────────────────────────────────────────
 ARC_ROOT = Path(__file__).resolve().parent.parent
 FUNDING_DIR = ARC_ROOT / "data" / "funding"
-DUAL_QUOTE_DIR = Path(
+_REPO_DUAL_QUOTE = ARC_ROOT / "data" / "v1_3_replay"
+_LEGACY_DUAL_QUOTE = Path(
     r"C:\Users\user\trading\arb\ai_agent_trading_v1.0\v2_dual_quote_arb\data\backtest\1s"
+)
+DUAL_QUOTE_DIR = Path(
+    os.environ.get(
+        "ARC_DEMO_DATA_DIR",
+        str(_REPO_DUAL_QUOTE if _REPO_DUAL_QUOTE.exists() else _LEGACY_DUAL_QUOTE),
+    )
 )
 OUT_QTABLE = ARC_ROOT / "consumers" / "capital_allocator" / "allocator_q.json"
 OUT_REPORT = ARC_ROOT / "consumers" / "capital_allocator" / "pretrain_report.md"

@@ -51,10 +51,14 @@ import pandas as pd
 log = logging.getLogger("regime_gbm")
 
 
+_REPO_DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "v1_3_replay"
+_LEGACY_PRIVATE_DIR = Path(
+    r"C:\Users\user\trading\arb\ai_agent_trading_v1.0\v2_dual_quote_arb\data\backtest\1s"
+)
 DEFAULT_DATA_DIR = Path(
     os.environ.get(
         "ARC_DEMO_DATA_DIR",
-        r"C:\Users\user\trading\arb\ai_agent_trading_v1.0\v2_dual_quote_arb\data\backtest\1s",
+        str(_REPO_DATA_DIR if _REPO_DATA_DIR.exists() else _LEGACY_PRIVATE_DIR),
     )
 )
 WINDOWS = (10, 30, 120)

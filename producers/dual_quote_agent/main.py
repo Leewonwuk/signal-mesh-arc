@@ -33,9 +33,13 @@ from shared.signal import ArbitrageSignal, SignalAction, SignalTier  # noqa: E40
 log = logging.getLogger("dual_quote_producer")
 
 
+_REPO_DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "v1_3_replay"
+_LEGACY_PRIVATE_DIR = (
+    r"C:\Users\user\trading\arb\ai_agent_trading_v1.0\v2_dual_quote_arb\data\backtest\1s"
+)
 DEFAULT_DATA_DIR = os.environ.get(
     "ARC_DEMO_DATA_DIR",
-    r"C:\Users\user\trading\arb\ai_agent_trading_v1.0\v2_dual_quote_arb\data\backtest\1s",
+    str(_REPO_DATA_DIR if _REPO_DATA_DIR.exists() else _LEGACY_PRIVATE_DIR),
 )
 
 
