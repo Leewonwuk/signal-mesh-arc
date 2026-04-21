@@ -25,6 +25,15 @@ from pathlib import Path
 
 import requests
 
+# Windows consoles default to cp949/cp1252 and crash on em-dashes in --help.
+# Force UTF-8 on stdout/stderr before argparse ever writes to them.
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 ROOT = Path(__file__).parent.parent
 BRIDGE = os.environ.get("ARC_BRIDGE_URL", "http://localhost:3000")
 
