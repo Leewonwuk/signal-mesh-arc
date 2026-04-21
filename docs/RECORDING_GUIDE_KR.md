@@ -5,6 +5,12 @@
 
 ---
 
+## 프리컴파일 자산 (2026-04-21 오후 미리 만들어둠)
+
+- **`docs/SLIDES.pdf`** — Marp 렌더 완료. S2 씬에서 PDF 리더 풀스크린으로 띄울 것. Marp-cli 재설치 불필요.
+- **`docs/evidence/`** — 오늘 시점 브리지 JSON 10개 덤프 + 설명 README. 내일 데모가 실패하면 영상 인서트·제출 폼 첨부로 활용.
+- **`docs/cover_image.svg`** — S1 오프닝 + S5 클로징 공용.
+
 ## 사전 준비 (촬영 시작 30분 전)
 
 ### 1. 화면 자산
@@ -99,6 +105,13 @@
 - 데모 시작 후 **첫 30초는 카운터가 0**일 수 있음 (producer warmup) — 이 구간엔 "you'll see signals start streaming in just a moment" 식으로 늘어뜨리기
 - 만약 60초 지나도 raw=0 → 페르소나 setup 안 된 것. 컷하고 재시작
 - 10분 런이지만 영상은 75초만 사용. 그 동안 카운터 30→100+ 변화 캡처
+
+**⚠️ Premium 시그널 저빈도 주의 (4/21 dry-run 발견):**
+- raw signal은 500 cap에 금방 찬다. **premium은 2.5분에 +1 정도로 드물다.**
+- 원인: 데이터의 dt_prem 분포가 0.0005 임계 위에 있는 구간이 희소
+- 대응 옵션 A (권장): 보이스오버에서 "every premium signal is a high-conviction selection — sparse by design" 프레이밍. **양이 아니라 variable pricing·justification 품질**을 강조
+- 대응 옵션 B: 녹화 시작 **10분 전에 이미 데모를 돌려놔서** 누적 premium 20-40개 캐시 확보 후 그 숫자에서 녹화 시작. 그러면 카운터가 40→45→50 이런 식으로 안정적으로 증가
+- 대응 옵션 C: `--threshold 0.0001` 로 더 낮춤 (단, persona도 동시에 낮춰야 함)
 
 ---
 

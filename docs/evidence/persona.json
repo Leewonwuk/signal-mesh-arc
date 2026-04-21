@@ -1,0 +1,1 @@
+{"active":{"exchangeId":"demo","label":"Demo (relaxed threshold)","feeRoundTrip":0.0005,"thresholdRate":0.0005,"supportsDualQuoteArb":true,"updatedAt":1776754241721,"source":"dashboard"},"demotions":{"arb_incompatible":0,"below_threshold":0}}
