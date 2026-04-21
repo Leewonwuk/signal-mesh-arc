@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment / secrets — DO NOT REMOVE WITHOUT REVIEW
+.env
+.env.*
+!.env.example
+*.secrets.txt
+*_secrets.txt
+*_secret.txt
+circle_secrets*.txt
+recovery_file*.dat
+*.key
+*.pem
+gemini_api_key.txt
+*api_key*.txt
+*api_key*.json
+private_key*.txt
+private_key*.json
+
+# Internal handoff docs (contain partial credentials / wallet IDs)
+docs/CIRCLE_SETUP_HANDOFF_*.md
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

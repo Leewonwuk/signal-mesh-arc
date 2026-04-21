@@ -1,0 +1,318 @@
+{
+  "pretrained_at": 1776739939,
+  "pretrained_at_iso": "2026-04-21T02:52:19.203683+00:00",
+  "design_version": "ALLOCATOR_RL_DESIGN v1 (F8-fix)",
+  "num_states": 9,
+  "num_actions": 7,
+  "state_labels": [
+    "calm/cold/tight",
+    "calm/cold/wide",
+    "calm/hot/tight",
+    "calm/hot/wide",
+    "hot/cold/tight",
+    "hot/cold/wide",
+    "hot/hot/tight",
+    "hot/hot/wide",
+    "cold-sentinel"
+  ],
+  "action_labels": [
+    "ALL_V1",
+    "ALL_V2",
+    "ALL_V3",
+    "KIMCHI_DUAL",
+    "DUAL_FUND",
+    "KIMCHI_FUND",
+    "DIVERSIFY"
+  ],
+  "action_weights": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ],
+    [
+      0.5,
+      0.5,
+      0.0
+    ],
+    [
+      0.0,
+      0.5,
+      0.5
+    ],
+    [
+      0.5,
+      0.0,
+      0.5
+    ],
+    [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ]
+  ],
+  "q_table": [
+    [
+      0.27707379282152733,
+      0.5172981085642425,
+      0.5,
+      0.3971859506928849,
+      0.4563133610065918,
+      0.3362012031352343,
+      0.396566838278237
+    ],
+    [
+      -0.4291787899144685,
+      -0.9428949932832784,
+      0.5,
+      -0.12490998607831522,
+      -0.2147098795481378,
+      -0.01923420497531634,
+      -0.3006609358112746
+    ],
+    [
+      -0.547398410758665,
+      0.11443731122696363,
+      0.2670961873977336,
+      -0.2164805497658507,
+      0.19076674931234863,
+      -0.14015111168046565,
+      -0.055288304044655914
+    ],
+    [
+      -0.509113219223615,
+      0.09899706974170458,
+      0.6428870624130139,
+      -0.2050580747409552,
+      0.3709420660773593,
+      0.06688692159469944,
+      0.07759030431036784
+    ],
+    [
+      2.2667202271090354,
+      -0.23009698151451494,
+      0.5,
+      1.0183116227972604,
+      0.20944986614164052,
+      1.4578584704534157,
+      0.8952066531307721
+    ],
+    [
+      0.6368573580759499,
+      -0.6697393993204153,
+      0.5,
+      -0.016441020622232703,
+      0.16149873309082377,
+      0.8147971117890063,
+      0.31995160808586576
+    ],
+    [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    [
+      -0.40247899690442,
+      -0.13164930462018978,
+      2.4794484479786236,
+      -0.267064150762305,
+      0.15642674165782514,
+      0.02101189551570997,
+      -0.02987517119625662
+    ],
+    [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
+  ],
+  "visit_counts": [
+    [
+      203,
+      203,
+      0,
+      203,
+      203,
+      203,
+      203
+    ],
+    [
+      1013,
+      1014,
+      0,
+      1013,
+      1017,
+      1013,
+      1014
+    ],
+    [
+      18,
+      18,
+      18,
+      18,
+      18,
+      18,
+      18
+    ],
+    [
+      132,
+      132,
+      132,
+      132,
+      132,
+      132,
+      132
+    ],
+    [
+      17,
+      17,
+      0,
+      17,
+      17,
+      17,
+      17
+    ],
+    [
+      52,
+      52,
+      0,
+      52,
+      52,
+      52,
+      52
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      65,
+      65,
+      69,
+      65,
+      65,
+      65,
+      65
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "reward_stats": {
+    "mu_v1": 0.009766639114201859,
+    "sigma_v1": 0.8023586650554752,
+    "mu_v2": 0.20302577228813187,
+    "sigma_v2": 0.02467422664887929,
+    "mu_v3": -0.025224977704020417,
+    "sigma_v3": 0.054852144850033986,
+    "dollar_scale": 0.5,
+    "lambda": 0.2
+  },
+  "calibration": {
+    "cal_start": "2026-01-21T00:00:00Z",
+    "cal_end": "2026-03-22T00:00:00Z",
+    "train_end": "2026-04-21T23:00:00Z",
+    "cal_ticks": 180,
+    "train_ticks": 91,
+    "bootstrap_resamples": 1500,
+    "regime_thresholds": {
+      "vol_p65": 0.023803032767735193,
+      "funding_p90": 8.053300000000001e-05,
+      "kimchi_p50": 0.0015997126647797127,
+      "usdc_p50": 0.0007948891711674086
+    }
+  },
+  "hyperparams": {
+    "alpha": 0.1,
+    "q_init": 0.5,
+    "ucb_c": 0.5,
+    "lambda": 0.2,
+    "notional": 500.0
+  },
+  "f_alloc_6_gate": {
+    "pass": true,
+    "corner_cells": 5,
+    "per_cell_argmax": [
+      1,
+      4,
+      2,
+      2,
+      0,
+      5,
+      -1,
+      2,
+      -1
+    ]
+  },
+  "data_provenance": {
+    "funding": {
+      "source": "data/funding/*_90d.parquet",
+      "synthetic": false,
+      "symbols": [
+        "ADAUSDT",
+        "DOGEUSDT",
+        "SOLUSDT",
+        "TRXUSDT",
+        "XRPUSDT"
+      ]
+    },
+    "v3_pnl": {
+      "formula": "funding_rate*500 + basis_change*500*0.5",
+      "synthetic": false
+    },
+    "v1_pnl": {
+      "formula": "AR(1) phi=0.4 sigma=0.80 centered at 0",
+      "synthetic": true,
+      "reason": "no Upbit/Binance kimchi data in repo per F1b"
+    },
+    "v2_pnl": {
+      "formula": "std(premium_1min) * sqrt(n) * 0.025 * 500, per 8h bin; bootstrapped",
+      "synthetic": false,
+      "bootstrapped": true,
+      "pool_size": 91
+    },
+    "kimchi_premium_feature": {
+      "synthetic": true,
+      "reason": "F1b lacks Upbit data; AR(1) around 0.003"
+    },
+    "usdc_spread_feature": {
+      "synthetic": true,
+      "reason": "F1b lacks dual_quote spread time series; AR(1) around 0.0008"
+    },
+    "vol_feature": {
+      "synthetic": false,
+      "formula": "rolling-8 \u03c3 of cross-sectional mean perp_close return",
+      "note": "proxy \u2014 design calls for BTC 8h \u03c3 but F1b parquets exclude BTC"
+    }
+  },
+  "elapsed_seconds": 6.11
+}

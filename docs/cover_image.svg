@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020"/>
+      <stop offset="50%" stop-color="#0f1a3a"/>
+      <stop offset="100%" stop-color="#0b1020"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wire" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#1e2a4a" stroke-width="1" opacity="0.5">
+    <path d="M0 150 H1600 M0 300 H1600 M0 450 H1600 M0 600 H1600 M0 750 H1600"/>
+    <path d="M200 0 V900 M400 0 V900 M600 0 V900 M800 0 V900 M1000 0 V900 M1200 0 V900 M1400 0 V900"/>
+  </g>
+
+  <circle cx="800" cy="450" r="420" fill="url(#glow)"/>
+
+  <!-- Left: producer agents -->
+  <g transform="translate(120,280)">
+    <rect x="0" y="0" width="260" height="110" rx="14" fill="#111a35" stroke="#22d3ee" stroke-width="2" filter="url(#softShadow)"/>
+    <text x="20" y="38" font-family="Inter, system-ui, sans-serif" font-size="18" fill="#cbd5f5" font-weight="600">kimchi_agent</text>
+    <text x="20" y="62" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#94a3c4">KRW / USDT premium</text>
+    <text x="20" y="88" font-family="Menlo, monospace" font-size="12" fill="#22d3ee">$0.002 · raw</text>
+
+    <rect x="0" y="150" width="260" height="110" rx="14" fill="#111a35" stroke="#22d3ee" stroke-width="2" filter="url(#softShadow)"/>
+    <text x="20" y="188" font-family="Inter, system-ui, sans-serif" font-size="18" fill="#cbd5f5" font-weight="600">dual_quote_agent</text>
+    <text x="20" y="212" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#94a3c4">USDT / USDC spread</text>
+    <text x="20" y="238" font-family="Menlo, monospace" font-size="12" fill="#22d3ee">$0.002 · raw</text>
+  </g>
+
+  <!-- Centre: bridge -->
+  <g transform="translate(650,370)">
+    <rect x="0" y="0" width="300" height="160" rx="18" fill="#101a3c" stroke="url(#wire)" stroke-width="3" filter="url(#softShadow)"/>
+    <text x="150" y="45" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#f8fafc" font-weight="700">Arc Bridge</text>
+    <text x="150" y="75" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#a5b4fc">x402 · signal registry</text>
+    <text x="150" y="112" text-anchor="middle" font-family="Menlo, monospace" font-size="13" fill="#c4b5fd">/signals/publish</text>
+    <text x="150" y="132" text-anchor="middle" font-family="Menlo, monospace" font-size="13" fill="#c4b5fd">/producer/reliability</text>
+  </g>
+
+  <!-- Right: consumers -->
+  <g transform="translate(1220,280)">
+    <rect x="0" y="0" width="260" height="110" rx="14" fill="#111a35" stroke="#a855f7" stroke-width="2" filter="url(#softShadow)"/>
+    <text x="20" y="38" font-family="Inter, system-ui, sans-serif" font-size="18" fill="#f5d0fe" font-weight="600">meta_agent</text>
+    <text x="20" y="62" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#c4b5fd">Gemini 2.5 + GBM</text>
+    <text x="20" y="88" font-family="Menlo, monospace" font-size="12" fill="#a855f7">$0.01 · premium</text>
+
+    <rect x="0" y="150" width="260" height="110" rx="14" fill="#111a35" stroke="#a855f7" stroke-width="2" filter="url(#softShadow)"/>
+    <text x="20" y="188" font-family="Inter, system-ui, sans-serif" font-size="18" fill="#f5d0fe" font-weight="600">executor_agent</text>
+    <text x="20" y="212" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#c4b5fd">paper-trade + Arc tx</text>
+    <text x="20" y="238" font-family="Menlo, monospace" font-size="12" fill="#a855f7">onchain · Arc testnet</text>
+  </g>
+
+  <!-- Wires -->
+  <g fill="none" stroke="url(#wire)" stroke-width="2.5" stroke-linecap="round" opacity="0.9">
+    <path d="M380 335 C 520 335 540 450 650 450"/>
+    <path d="M380 485 C 520 485 540 450 650 450"/>
+    <path d="M950 450 C 1060 450 1080 335 1220 335"/>
+    <path d="M950 450 C 1060 450 1080 485 1220 485"/>
+  </g>
+
+  <!-- Signal dots along wires -->
+  <g fill="#22d3ee">
+    <circle cx="500" cy="380" r="4"/>
+    <circle cx="560" cy="420" r="3"/>
+  </g>
+  <g fill="#a855f7">
+    <circle cx="1060" cy="380" r="4"/>
+    <circle cx="1120" cy="460" r="3"/>
+  </g>
+
+  <!-- Title block -->
+  <g transform="translate(120,80)">
+    <text font-family="Inter, system-ui, sans-serif" font-size="64" font-weight="800" fill="#ffffff">Signal Mesh <tspan fill="#22d3ee">on Arc</tspan></text>
+    <text y="60" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#a5b4fc">An agent-to-agent nanopayment marketplace for crypto arbitrage signals.</text>
+  </g>
+
+  <!-- Bottom band: metrics -->
+  <g transform="translate(120,740)">
+    <rect x="0" y="0" width="1360" height="100" rx="16" fill="#0c1633" stroke="#1e2a4a"/>
+    <text x="40" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">per-signal price</text>
+    <text x="40" y="78" font-family="Menlo, monospace" font-size="28" fill="#22d3ee" font-weight="700">$0.002 – $0.01</text>
+
+    <text x="300" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">on-chain tx / 2-min demo</text>
+    <text x="300" y="78" font-family="Menlo, monospace" font-size="28" fill="#a855f7" font-weight="700">50+</text>
+
+    <text x="620" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">data backing GBM</text>
+    <text x="620" y="78" font-family="Menlo, monospace" font-size="28" fill="#f5d0fe" font-weight="700">87 pairs · ~7.5M rows</text>
+
+    <text x="960" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">gas / price ratio on Arc</text>
+    <text x="960" y="78" font-family="Menlo, monospace" font-size="28" fill="#4ade80" font-weight="700">0.34%</text>
+
+    <text x="1260" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">chain</text>
+    <text x="1260" y="78" font-family="Menlo, monospace" font-size="28" fill="#ffffff" font-weight="700">Arc</text>
+  </g>
+</svg>
