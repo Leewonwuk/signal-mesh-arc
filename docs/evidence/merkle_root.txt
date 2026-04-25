@@ -1,0 +1,17 @@
+{
+  "project": "AlphaLoop",
+  "spec": "sorted-pair SHA-256, leaf = sha256('tx_hash|amount')",
+  "evidence_file": "docs/evidence/batch_tx_hashes.txt",
+  "records": 150,
+  "merkle_root_sha256": "400039d5af1f5ea1ab6ee6068df6274d2b360f523b63b545e88e03aa06605b80",
+  "first_leaf": {
+    "tx_hash": "0xdb8c5027a883b81a1559daefd27bca4893d3dd76b22b5b6cc5cec9b322bd0202",
+    "amount_usdc": "0.0005",
+    "leaf_sha256": "efe4c647050caa8eec014155b32ed308e13f4394ed2418f22f51c12cd502c405"
+  },
+  "last_leaf": {
+    "tx_hash": "0x293388291834bb0f592f5573c647f6fe2209a9fcfb95883ba9e8e46301f041ba",
+    "amount_usdc": "0.0009",
+    "leaf_sha256": "6e931c0a0b481ad3a86bfb0e85815fcd3de711e2b9d01975cd1218cfbab65fe8"
+  }
+}
