@@ -1,0 +1,52 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AlphaLoop / executor_agent",
+  "description": "Settles premium signals on Arc testnet. Variable per-action pricing sampled from signal-quality distribution the pricing_policy emits ($0.0005–$0.010 cap). Paper-mode for marketplace dynamics; Circle Developer API burst for on-chain evidence.",
+  "version": "1.0.0",
+  "registrations": [
+    {
+      "chainId": 5042002,
+      "agentAddress": "0x4d61a39741d07111aabb6bcb596722bb62d2d819",
+      "signatureScheme": "circle-sca-entity-secret",
+      "custodyModel": "circle-developer-controlled-wallet"
+    }
+  ],
+  "services": [
+    {
+      "name": "settlement.execute",
+      "endpoint": "internal:consumers/executor_agent/main.py",
+      "protocol": "pull-loop",
+      "description": "Consumes premium signals, computes variable price via pricing_policy.choose_price, emits on-chain transfer via Circle Developer API."
+    }
+  ],
+  "capabilities": {
+    "settlementPath": "circle-developer-api-primary",
+    "settlementPathAlternate": "eip-3009-transferWithAuthorization (gated by mempool normalization)",
+    "pricing": "variable-per-signal-quality",
+    "priceFloor": "0.0005",
+    "priceCap": "0.010",
+    "settlementUnit": "USDC",
+    "nanopaymentsStandard": "EIP-3009"
+  },
+  "supportedTrust": [
+    "reputation-via-realized-pnl",
+    "merkle-audit-manifest"
+  ],
+  "auditManifest": {
+    "source": "https://github.com/Leewonwuk/signal-mesh-arc/blob/main/docs/evidence/batch_tx_hashes.txt",
+    "format": "tab-separated-hash-amount",
+    "integrity": "see merkle_root.txt"
+  },
+  "links": {
+    "github": "https://github.com/Leewonwuk/signal-mesh-arc",
+    "dashboard": "https://signal-mesh.vercel.app",
+    "evidence": "https://github.com/Leewonwuk/signal-mesh-arc/blob/main/docs/evidence/batch_tx_hashes.txt",
+    "arcscan": "https://testnet.arcscan.app/"
+  },
+  "metadata": {
+    "project": "AlphaLoop",
+    "track": "Agent-to-Agent Payment Loop",
+    "hackathon": "lablab.ai Agentic Economy on Arc · 2026-04",
+    "license": "MIT"
+  }
+}

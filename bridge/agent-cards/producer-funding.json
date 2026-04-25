@@ -1,0 +1,60 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AlphaLoop / producer_funding",
+  "description": "Funding-rate basis arbitrage signal producer (v3 lane). Polls Binance fapi /v1/premiumIndex for live funding rates and emits delta-neutral spot-long + perp-short signals when the per-8h funding rate clears the configured entry threshold. Production cadence aligns with the 8h funding cycle; demo cadence is 30s for judge visibility. Bybit/OKX perp funding follows the same pattern (single-venue intra-funding-cycle capture).",
+  "version": "1.0.0",
+  "registrations": [
+    {
+      "chainId": 5042002,
+      "agentAddress": "0xf90a57d3410ad342a3b85d22f6e7009db88565df",
+      "signatureScheme": "deterministic-test-address",
+      "custodyModel": "operator-controlled-pending-circle-sca-rotation",
+      "note": "v3 funding producer was added in the post-pre-recording sweep (2026-04-26). The other four agents are Circle-SCA-controlled; v3's wallet is a deterministic test address (sha256('alphaloop_v3_funding_producer_2026')[:40]) registered by the operator wallet. Rotation to a Circle SCA is queued behind hackathon submission."
+    }
+  ],
+  "services": [
+    {
+      "name": "signals.publish",
+      "endpoint": "https://signal-mesh-bridge.fly.dev/signals/publish",
+      "protocol": "http-json",
+      "description": "Push funding-rate basis signals (symbol, premium_rate=funding_per_8h, action=OPEN_FUNDING_LONG_SPOT_SHORT_PERP, regime=carry)."
+    },
+    {
+      "name": "signals.premium",
+      "endpoint": "https://signal-mesh-bridge.fly.dev/signals/premium",
+      "protocol": "x402",
+      "description": "Consume premium lane via x402 paywall. Funding signals are time-decay captures, not spread crossings — pricing reflects expected APR carry."
+    }
+  ],
+  "capabilities": {
+    "strategy": "funding-rate-basis-binance-fapi",
+    "pricing": "variable-per-signal-quality",
+    "priceFloor": "0.0005",
+    "priceCap": "0.010",
+    "settlementUnit": "USDC",
+    "deltaNeutral": true,
+    "fundingCycleHours": 8,
+    "entryThresholdPer8h": "0.0005",
+    "exitThresholdPer8h": "0.00005",
+    "maxBasisDivergence": "0.003"
+  },
+  "supportedTrust": [
+    "reputation-via-realized-pnl"
+  ],
+  "reputation": {
+    "source": "https://signal-mesh-bridge.fly.dev/producer/reliability",
+    "scheme": "bayesian-shrunk-hit-rate",
+    "window": 200
+  },
+  "links": {
+    "github": "https://github.com/Leewonwuk/signal-mesh-arc",
+    "dashboard": "https://signal-mesh.vercel.app",
+    "submission": "https://github.com/Leewonwuk/signal-mesh-arc/blob/main/docs/SUBMISSION.md"
+  },
+  "metadata": {
+    "project": "AlphaLoop",
+    "track": "Agent-to-Agent Payment Loop",
+    "hackathon": "lablab.ai Agentic Economy on Arc · 2026-04",
+    "license": "MIT"
+  }
+}

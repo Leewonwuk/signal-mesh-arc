@@ -1,0 +1,55 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AlphaLoop / producer_dual_quote",
+  "description": "Dual-quote arbitrage signal producer. Replays 1-second OHLCV ticks from the operator's live v1.3 production arb bot on EC2 (9 coins, pool ≈ $1,977 USDT). Emits sub-cent USDC-denominated signals when the USDT/USDC quote spread crosses the persona-configured threshold.",
+  "version": "1.0.0",
+  "registrations": [
+    {
+      "chainId": 5042002,
+      "agentAddress": "0xc3cd155b38197f1c3d598d0021a945d0f344c3a0",
+      "signatureScheme": "circle-sca-entity-secret",
+      "custodyModel": "circle-developer-controlled-wallet"
+    }
+  ],
+  "services": [
+    {
+      "name": "signals.publish",
+      "endpoint": "https://signal-mesh-bridge.fly.dev/signals/publish",
+      "protocol": "http-json",
+      "description": "Push premium dual-quote arb signals (symbol, premium_rate, notional, confidence)."
+    },
+    {
+      "name": "signals.premium",
+      "endpoint": "https://signal-mesh-bridge.fly.dev/signals/premium",
+      "protocol": "x402",
+      "description": "Consume premium lane via x402 paywall. Price varies by signal quality."
+    }
+  ],
+  "capabilities": {
+    "strategy": "dual-quote-USDT-USDC-spread",
+    "pricing": "variable-per-signal-quality",
+    "priceFloor": "0.0005",
+    "priceCap": "0.010",
+    "settlementUnit": "USDC",
+    "deltaNeutral": true
+  },
+  "supportedTrust": [
+    "reputation-via-realized-pnl"
+  ],
+  "reputation": {
+    "source": "https://signal-mesh-bridge.fly.dev/producer/reliability",
+    "scheme": "bayesian-shrunk-hit-rate",
+    "window": 200
+  },
+  "links": {
+    "github": "https://github.com/Leewonwuk/signal-mesh-arc",
+    "dashboard": "https://signal-mesh.vercel.app",
+    "submission": "https://github.com/Leewonwuk/signal-mesh-arc/blob/main/docs/SUBMISSION.md"
+  },
+  "metadata": {
+    "project": "AlphaLoop",
+    "track": "Agent-to-Agent Payment Loop",
+    "hackathon": "lablab.ai Agentic Economy on Arc · 2026-04",
+    "license": "MIT"
+  }
+}

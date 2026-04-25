@@ -1,8 +1,12 @@
-# Circle Product Feedback — Signal Mesh on Arc
+# Circle Product Feedback — AlphaLoop (Agentic Economy on Arc)
 
-> Submission for the **$500 USDC Product Feedback bonus**. Five honest pain
-> points encountered while building an agent-to-agent nanopayment marketplace
-> on Arc testnet, 2026-04-20 to 2026-04-25.
+> Submission for the **$500 USDC Product Feedback bonus**. Honest pain points
+> and improvement ideas encountered while building **AlphaLoop** — an
+> agent-to-agent nanopayment marketplace fed by a live production arb bot
+> — on Arc testnet, 2026-04-20 to 2026-04-25.
+>
+> Project codename: **AlphaLoop** (formerly working title "Signal Mesh on
+> Arc"). Track: 🤖 Agent-to-Agent Payment Loop.
 
 ---
 
@@ -171,8 +175,60 @@ order:
 | **3. Dual-decimal footgun helpers** | Days | Prevents silent 10^12× bugs |
 | **4. Entity Secret rotation example** | Hours | Stops the EOA-leak shortcut |
 | **5. Console "copy as code"** | Weeks | Turns Console from end-state to dev flow |
+| **6. Arc testnet mempool under hackathon load** | Ops-scale | Rescues EIP-3009 self-signing path during demo windows |
+| **7. Gateway unified balance for agent stacks** | Product-scale | Removes dev-time mental overhead of "which wallet am I settling from" |
 
 ---
 
-*Submitted as part of the Signal Mesh on Arc submission to the Circle
-product team. Happy to expand on any of the above in a follow-up call.*
+## 6. Arc testnet mempool saturation during hackathon windows
+
+**What happened.** During 2026-04-22 → 2026-04-24 our raw-EOA
+`eth_sendRawTransaction` path on `https://arc-sepolia.drpc.org` (and the
+other public Arc testnet RPCs we tried) returned `txpool is full`
+(code `-32003`) **repeatedly**. The Circle Developer API path
+(`/v1/w3s/developer/transactions/transfer`) kept working — it has its own
+queue + retry behind the scenes — but our EIP-3009 self-signing path
+that we'd validated two days earlier went cold. We ended up flipping
+the demo burst to the Circle API path (which is what ships the 150 tx
+evidence in `docs/evidence/batch_tx_hashes.txt`).
+
+**Why it matters.** The hackathon challenge literally asks teams to
+demonstrate raw EIP-3009 / nanopay self-signing. If the sponsored
+testnet mempool is saturated during the week the hackathon runs, every
+team silently falls back to Circle-managed signing and the custody
+story looks more centralized than it should. We caught this because
+our pre-mortem review flagged the custody asymmetry; teams without
+that review will ship EIP-3009 code that doesn't actually run.
+
+**What would land.** A **hackathon-dedicated mempool tier** on Arc
+testnet during submission windows (capacity burst + priority) OR a
+documented **"congested? fall back via Circle API" recipe** published
+at the hackathon kickoff, so teams aren't rediscovering this at T-48h.
+
+---
+
+## 7. Circle Gateway for agent stacks — observation, not request
+
+**What we saw.** Four agent wallets, each independently balanced via
+faucet, each settling through its own tx. That's fine for a demo but
+for an agent stack scaling to 40 agents it becomes an operational
+burden (40 faucet drips, 40 balances to monitor).
+
+**Why Gateway might be the right primitive.** If Gateway (unified
+cross-chain USDC balance) extended to Arc, an agent-swarm operator
+could provision ONE Gateway balance and have all 40 agents settle
+against it with per-agent spend policies. That removes "which wallet
+am I settling from" as a dev-time concern and maps 1:1 to the
+producer/meta/executor role abstraction we already use.
+
+**What we did instead.** We chose not to bolt CCTP/Gateway/Bridge-Kit
+onto AlphaLoop because our thesis is the **single-chain loop** (Arc).
+Adding cross-chain primitives would describe a different project.
+**But** for a v2 where producer-agents earn on Arc and spend on Base
+for non-USDC services, Gateway + CCTP would be the obvious seam.
+
+---
+
+*Submitted as part of the **AlphaLoop** (Track 2: Agent-to-Agent
+Payment Loop) submission to the Circle product team. Happy to expand
+on any of the above in a follow-up call.*

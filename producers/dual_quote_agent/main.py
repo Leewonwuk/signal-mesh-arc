@@ -121,52 +121,59 @@ def run(cfg: ReplayConfig) -> None:
     published = 0
     session = requests.Session()
 
-    for _, row in df.iterrows():
-        try:
-            mid_usdt = _mid(row, "usdt")
-            mid_usdc = _mid(row, "usdc")
-        except KeyError as e:
-            log.debug("Skip row: %s", e)
-            continue
+    # Wrap the whole replay loop in KeyboardInterrupt handling so that
+    # CTRL+C during a live recording produces a clean one-line exit log
+    # instead of a multi-line traceback visible on screen (camera hygiene).
+    try:
+        for _, row in df.iterrows():
+            try:
+                mid_usdt = _mid(row, "usdt")
+                mid_usdc = _mid(row, "usdc")
+            except KeyError as e:
+                log.debug("Skip row: %s", e)
+                continue
 
-        decision = decide_v2(
-            mid_usdt=mid_usdt,
-            mid_usdc=mid_usdc,
-            usdt=usdt_bal,
-            usdc=usdc_bal,
-            dt_entry_threshold_rate=cfg.dt_entry_threshold_rate,
-            dc_entry_threshold_rate=cfg.dc_entry_threshold_rate,
-            fee_rate=cfg.fee_rate,
-            slippage_rate=cfg.slippage_rate,
-        )
-
-        if decision.action != ActionV2.HOLD:
-            sig = ArbitrageSignal(
-                timestamp=time.time(),
-                producer_id="dual_quote_agent",
-                strategy="dual_quote_spread",
-                symbol=cfg.symbol,
-                action=SignalAction(decision.action.value),
-                premium_rate=decision.premium,
-                bid_price_a=float(row.get("bid_usdc", mid_usdc)),
-                ask_price_a=float(row.get("ask_usdc", mid_usdc)),
-                bid_price_b=float(row.get("bid_usdt", mid_usdt)),
-                ask_price_b=float(row.get("ask_usdt", mid_usdt)),
-                reason=decision.reason,
-                tier=SignalTier.RAW,
-                expected_profit_usd=decision.expected_profit_usd,
+            decision = decide_v2(
+                mid_usdt=mid_usdt,
+                mid_usdc=mid_usdc,
+                usdt=usdt_bal,
+                usdc=usdc_bal,
+                dt_entry_threshold_rate=cfg.dt_entry_threshold_rate,
+                dc_entry_threshold_rate=cfg.dc_entry_threshold_rate,
+                fee_rate=cfg.fee_rate,
+                slippage_rate=cfg.slippage_rate,
             )
-            if publish_signal(sig, cfg.bridge_url, session):
-                published += 1
-                log.info(
-                    "[%s] %s premium=%.4f%% profit=$%.4f (total published=%d)",
-                    cfg.symbol, decision.action.value, decision.premium * 100,
-                    decision.expected_profit_usd, published,
+
+            if decision.action != ActionV2.HOLD:
+                sig = ArbitrageSignal(
+                    timestamp=time.time(),
+                    producer_id="dual_quote_agent",
+                    strategy="dual_quote_spread",
+                    symbol=cfg.symbol,
+                    action=SignalAction(decision.action.value),
+                    premium_rate=decision.premium,
+                    bid_price_a=float(row.get("bid_usdc", mid_usdc)),
+                    ask_price_a=float(row.get("ask_usdc", mid_usdc)),
+                    bid_price_b=float(row.get("bid_usdt", mid_usdt)),
+                    ask_price_b=float(row.get("ask_usdt", mid_usdt)),
+                    reason=decision.reason,
+                    tier=SignalTier.RAW,
+                    expected_profit_usd=decision.expected_profit_usd,
                 )
+                if publish_signal(sig, cfg.bridge_url, session):
+                    published += 1
+                    log.info(
+                        "[%s] %s premium=%.4f%% profit=$%.4f (total published=%d)",
+                        cfg.symbol, decision.action.value, decision.premium * 100,
+                        decision.expected_profit_usd, published,
+                    )
 
-        time.sleep(sleep_per_tick)
+            time.sleep(sleep_per_tick)
 
-    log.info("Replay complete. Total signals published: %d", published)
+        log.info("Replay complete. Total signals published: %d", published)
+    except KeyboardInterrupt:
+        log.info("Replay interrupted by user. Total signals published: %d", published)
+        return
 
 
 def main() -> None:

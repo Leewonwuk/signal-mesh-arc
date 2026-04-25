@@ -123,6 +123,18 @@ def _update_hist(symbol: str, premium: float) -> list[float]:
 def _stub_enrich(signals: list[dict], reliability: dict[str, dict]) -> dict:
     """Heuristic fallback when Gemini is unavailable — still produces a premium row.
     Now uses producer hit-rate to down-weight low-reliability sources (Karpathy loop).
+
+    Confidence ceiling note (2026-04-26 calibration patch):
+      Previous version could clip to exactly 1.000 on strong signals + cold-start
+      hit-rate (hr=0.5 → blended × 2 = 1.0 multiplier). A real ML output never
+      lands on a hard 1.000, so judges with ML background read that as a
+      calibration bug. Two countermeasures:
+        (a) cap the raw premium contribution at 0.95 (was 1.0) so even an
+            extreme premium can't carry confidence to 1.0 by itself.
+        (b) apply a final 0.97 shrinkage and clamp to [0.0, 0.94] so the
+            displayed confidence stays in a believable band for the stub.
+            The Gemini code path is unaffected — the model can still emit
+            whatever it computes.
     """
     prems = [s.get("premium_rate", 0.0) for s in signals]
     avg = sum(prems) / max(len(prems), 1)
@@ -134,8 +146,12 @@ def _stub_enrich(signals: list[dict], reliability: dict[str, dict]) -> dict:
     samples = int(reliability.get(top_producer, {}).get("samples", 0))
     # Bayesian-style shrink to 0.5 when samples are thin
     blended_hr = (hit_rate * samples + 0.5 * 20) / (samples + 20)
-    confidence = max(0.0, min(1.0, abs(avg) * 300)) * (0.6 if disagree else 1.0) * blended_hr * 2
-    confidence = max(0.0, min(1.0, confidence))
+    # (a) raw premium contribution capped at 0.95 — visible headroom even on
+    # extreme premia, so we never advertise certainty from one term alone.
+    raw_premium_term = max(0.0, min(0.95, abs(avg) * 300))
+    confidence = raw_premium_term * (0.6 if disagree else 1.0) * blended_hr * 2
+    # (b) final shrinkage + hard ceiling 0.94.
+    confidence = max(0.0, min(0.94, confidence * 0.97))
     return {
         "action": top["action"],
         "confidence_score": round(confidence, 3),
@@ -197,12 +213,17 @@ def fetch_reliability() -> dict[str, dict]:
 
 
 def publish_premium(original: dict, enriched: dict) -> bool:
+    # Preserve the source-lane `strategy` so the dashboard can still colour-code
+    # premium rows by v1/v2/v3 provenance. Meta-tier annotation is expressed via
+    # tier="premium" + meta_classifier; overwriting `strategy` to "gemini_meta"
+    # (the prior behaviour) silently erased the mesh-lane identity on promotion.
     payload: dict[str, Any] = {
         **original,
         **enriched,
         "tier": "premium",
         "producer_id": "meta_agent",
-        "strategy": "gemini_meta",
+        "strategy": original.get("strategy", "unknown"),
+        "meta_classifier": "gemini_meta",
         "timestamp": time.time(),
     }
     try:

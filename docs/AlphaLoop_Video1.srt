@@ -1,0 +1,343 @@
+1
+00:00:00,500 --> 00:00:02,500
+USDC is the gas.
+
+2
+00:00:02,500 --> 00:00:04,800
+On Arc.
+
+3
+00:00:05,000 --> 00:00:07,500
+I run a live arb bot on EC2 —
+
+4
+00:00:07,500 --> 00:00:10,000
+nine coins, running right now.
+
+5
+00:00:10,000 --> 00:00:13,000
+And those signals flow to other agents
+
+6
+00:00:13,000 --> 00:00:15,500
+on-chain — every second.
+
+7
+00:00:15,500 --> 00:00:18,500
+On every other chain, agents earn USDC
+
+8
+00:00:18,500 --> 00:00:20,500
+but pay gas in ETH —
+
+9
+00:00:20,500 --> 00:00:23,000
+a hidden human refills that wallet.
+
+10
+00:00:23,000 --> 00:00:25,500
+On Arc, USDC IS the gas.
+
+11
+00:00:25,500 --> 00:00:28,500
+Signal in, payment out, gas — all USDC.
+
+12
+00:00:28,500 --> 00:00:30,000
+The agent closes its own books.
+
+13
+00:00:30,200 --> 00:00:33,000
+Per-signal value in an agent marketplace
+
+14
+00:00:33,000 --> 00:00:35,000
+is a fraction of a cent.
+
+15
+00:00:35,000 --> 00:00:37,500
+On Base or Polygon or Solana,
+
+16
+00:00:37,500 --> 00:00:40,000
+gas alone eats most of that.
+
+17
+00:00:40,000 --> 00:00:42,500
+And worse, agents earn in USDC
+
+18
+00:00:42,500 --> 00:00:44,800
+but pay gas in ETH or SOL —
+
+19
+00:00:44,800 --> 00:00:46,500
+two-unit accounting.
+
+20
+00:00:46,500 --> 00:00:48,500
+The agent has no way to self-balance.
+
+21
+00:00:48,500 --> 00:00:50,500
+Behind every agent-economy demo,
+
+22
+00:00:50,500 --> 00:00:52,500
+there's a human refilling the gas.
+
+23
+00:00:52,700 --> 00:00:55,000
+Arc makes USDC the native gas.
+
+24
+00:00:55,000 --> 00:00:58,000
+One unit of account for fee, payment, gas.
+
+25
+00:00:58,000 --> 00:01:00,500
+That removes a whole layer —
+
+26
+00:01:00,500 --> 00:01:03,000
+a producer earning USDC can fund
+
+27
+00:01:03,000 --> 00:01:05,500
+its own gas from its own revenue.
+
+28
+00:01:05,500 --> 00:01:08,000
+An agent stack that runs forever
+
+29
+00:01:08,000 --> 00:01:11,000
+without an operator topping up native tokens.
+
+30
+00:01:11,000 --> 00:01:13,000
+That is the closed loop.
+
+31
+00:01:13,000 --> 00:01:15,000
+No paymaster, no subsidy, no hidden operator.
+
+32
+00:01:15,200 --> 00:01:17,500
+This is the AlphaLoop dashboard,
+
+33
+00:01:17,500 --> 00:01:20,000
+live at signal-mesh.vercel.app.
+
+34
+00:01:20,000 --> 00:01:22,500
+Bridge plus three strategy producers —
+
+35
+00:01:22,500 --> 00:01:24,500
+kimchi, dual-quote, funding —
+
+36
+00:01:24,500 --> 00:01:26,800
+backed by my v1.3 production arb bot.
+
+37
+00:01:26,800 --> 00:01:29,500
+The mix chip shows v1, v2, v3 signals
+
+38
+00:01:29,500 --> 00:01:31,000
+interleaving in real time.
+
+39
+00:01:31,000 --> 00:01:34,000
+I'm firing one-hundred-fifty
+
+40
+00:01:34,000 --> 00:01:36,500
+variably-priced USDC settlements.
+
+41
+00:01:36,500 --> 00:01:39,500
+Real Arc testnet, real x402,
+
+42
+00:01:39,500 --> 00:01:42,000
+five ERC-8004 agent wallets.
+
+43
+00:01:42,000 --> 00:01:44,500
+Each amount sampled from signal quality —
+
+44
+00:01:44,500 --> 00:01:47,000
+half-a-tenth of a cent up to the cap.
+
+45
+00:01:47,000 --> 00:01:49,500
+Watch the tx counter climb —
+
+46
+00:01:49,500 --> 00:01:52,000
+real hashes on arcscan, amounts vary.
+
+47
+00:01:52,000 --> 00:01:54,500
+That's what variable-price x402 settler means.
+
+48
+00:01:54,500 --> 00:01:57,000
+Low-signal at one twentieth of a cent,
+
+49
+00:01:57,000 --> 00:01:59,500
+high-confidence at the one-cent cap.
+
+50
+00:01:59,500 --> 00:02:02,000
+Block confirmed. Amount reflects
+
+51
+00:02:02,000 --> 00:02:04,500
+what the meta agent judged this worth.
+
+52
+00:02:04,500 --> 00:02:07,000
+Meanwhile, the Gemini-powered meta agent
+
+53
+00:02:07,000 --> 00:02:09,500
+arbitrates across three strategy lanes.
+
+54
+00:02:09,500 --> 00:02:12,500
+V1 kimchi premium, Korean to Global.
+
+55
+00:02:12,500 --> 00:02:15,000
+V2 dual-quote spread, intra-venue.
+
+56
+00:02:15,000 --> 00:02:17,500
+V3 funding-rate basis on perp.
+
+57
+00:02:17,500 --> 00:02:20,000
+Real prices from a live production bot.
+
+58
+00:02:20,200 --> 00:02:22,500
+Round one, this learner lost to
+
+59
+00:02:22,500 --> 00:02:24,500
+a one-line if-statement.
+
+60
+00:02:24,500 --> 00:02:26,500
+We fixed the reward function.
+
+61
+00:02:26,500 --> 00:02:29,500
+Round two — it ties the empirical optimum.
+
+62
+00:02:29,500 --> 00:02:32,500
+P equals zero point four nine versus ALL_V2.
+
+63
+00:02:32,500 --> 00:02:35,000
+The convergence IS the rigor signal.
+
+64
+00:02:35,000 --> 00:02:37,500
+Nine regime states, seven actions.
+
+65
+00:02:37,500 --> 00:02:40,500
+Sparse ALL_V3 is expected —
+
+66
+00:02:40,500 --> 00:02:43,000
+ninety percent of history was cold-funding.
+
+67
+00:02:43,000 --> 00:02:45,500
+Persona switching is live — note the retail tag
+
+68
+00:02:45,500 --> 00:02:48,500
+and the warning chip on institutional tiers.
+
+69
+00:02:48,500 --> 00:02:50,500
+The bridge demotes incompatible venues.
+
+70
+00:02:50,500 --> 00:02:53,000
+This is not a chatbot wrapping a wallet.
+
+71
+00:02:53,000 --> 00:02:55,500
+Each of our five agents has its own
+
+72
+00:02:55,500 --> 00:02:58,000
+ERC-8004 registration card.
+
+73
+00:02:58,000 --> 00:03:00,500
+Our AlphaLoopAgentRegistry on Arc
+
+74
+00:03:00,500 --> 00:03:03,500
+emitted five AgentRegistered events —
+
+75
+00:03:03,500 --> 00:03:06,000
+each carrying the sha256 hash of the card.
+
+76
+00:03:06,000 --> 00:03:08,500
+Off-chain document, on-chain anchor.
+
+77
+00:03:08,500 --> 00:03:11,000
+Variable price encodes signal quality.
+
+78
+00:03:11,000 --> 00:03:13,500
+Outcome feedback re-prices future signals.
+
+79
+00:03:13,500 --> 00:03:16,000
+A learned meta-policy decides which trades.
+
+80
+00:03:16,000 --> 00:03:18,500
+A real market — verifiable end-to-end.
+
+81
+00:03:18,500 --> 00:03:21,000
+One-fifty variably-priced tx, closing the loop.
+
+82
+00:03:21,000 --> 00:03:22,500
+One unit of account.
+
+83
+00:03:22,500 --> 00:03:24,500
+Zero humans in the gas tank.
+
+84
+00:03:24,500 --> 00:03:27,000
+Open signal-mesh.vercel.app,
+
+85
+00:03:27,000 --> 00:03:29,000
+fire the demo, watch the allocator pick.
+
+86
+00:03:29,000 --> 00:03:31,000
+AlphaLoop — on Arc.

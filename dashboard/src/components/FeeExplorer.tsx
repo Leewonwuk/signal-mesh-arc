@@ -145,14 +145,18 @@ export function FeeExplorer() {
         setSync({ kind: 'error', message: String((e as Error).message ?? e) })
       }
     }
-    // On the very first effect tick, wait a bit longer so we don't slam the
-    // bridge before the user has actually interacted — but still sync once so
-    // the bridge reflects what the dashboard is showing.
-    const delay = didInitialSync.current ? 300 : 600
-    debounceRef.current = window.setTimeout(() => {
+    // Skip the initial-mount POST entirely. Earlier versions debounced the
+    // first effect tick and then fired the default persona, which stomped
+    // whatever persona the operator had set via curl/other route before opening
+    // the dashboard — a silent demo-breaker. Only user interaction (tab click,
+    // tier radio, threshold slider) triggers a re-sync now.
+    if (!didInitialSync.current) {
       didInitialSync.current = true
+      return
+    }
+    debounceRef.current = window.setTimeout(() => {
       void fire()
-    }, delay)
+    }, 300)
     return () => {
       if (debounceRef.current != null) window.clearTimeout(debounceRef.current)
     }
@@ -163,7 +167,8 @@ export function FeeExplorer() {
       <div className="fee-explorer-header">
         <h2 style={{ margin: 0 }}>Fee persona explorer</h2>
         <span className="meta">
-          Switch venues & VIP tiers to see how the v1.3 edge evaporates or widens.
+          <strong>Binance VIP-0 + USDC promo is the actual v1.3 production venue</strong> (648 trades · $17.92 PnL in <code>docs/evidence/v1_3_live_stats_260411-260419.json</code>).
+          The other tabs (Bybit 0.12%, OKX, MEXC, Coinbase) project the <em>same</em> Binance trade flow against each venue's fee envelope — what-if scenarios, not actual runs.
           The bridge gates the premium lane against the active persona — try it live.
         </span>
         <SyncBadge sync={sync} />
@@ -225,12 +230,26 @@ export function FeeExplorer() {
       <div className="fx-grid">
         {/* VIP tier selector */}
         <div className="fx-panel">
-          <div className="fx-panel-label">VIP tier</div>
+          <div className="fx-panel-label">
+            VIP tier
+            {(() => {
+              const t = activeExchange.vipTiers.find(x => x.id === activePersona.vipTierId)
+              if (!t || t.retailDefault) return null
+              return (
+                <span
+                  className="fx-tier-warning"
+                  title="This tier requires institutional 30d volume. The retail-accessible default is highlighted in the radio group below."
+                >
+                  ⚠ institutional tier — not retail-accessible
+                </span>
+              )
+            })()}
+          </div>
           <div className="fx-radio-group">
             {activeExchange.vipTiers.map(t => (
               <label
                 key={t.id}
-                className={`fx-radio ${activePersona.vipTierId === t.id ? 'is-active' : ''}`}
+                className={`fx-radio ${activePersona.vipTierId === t.id ? 'is-active' : ''} ${t.retailDefault ? 'is-retail' : ''}`}
               >
                 <input
                   type="radio"
@@ -238,7 +257,10 @@ export function FeeExplorer() {
                   checked={activePersona.vipTierId === t.id}
                   onChange={() => setPersona(activeId, { vipTierId: t.id })}
                 />
-                <span className="fx-radio-name">{t.name}</span>
+                <span className="fx-radio-name">
+                  {t.name}
+                  {t.retailDefault && <span className="fx-radio-retail-tag">retail</span>}
+                </span>
                 <span className="fx-radio-gate">{t.volumeGate}</span>
                 <span className="fx-radio-fees">
                   {(t.maker * 100).toFixed(3)}% / {(t.taker * 100).toFixed(3)}%
@@ -282,9 +304,9 @@ export function FeeExplorer() {
           </div>
         </div>
 
-        {/* Pair + threshold */}
+        {/* Pair + allocator threshold */}
         <div className="fx-panel">
-          <div className="fx-panel-label">Pair & threshold</div>
+          <div className="fx-panel-label">Pair &amp; allocator threshold</div>
           <div className="fx-row">
             <label className="fx-field">
               <span>Traded pair</span>
@@ -298,7 +320,7 @@ export function FeeExplorer() {
               </select>
             </label>
             <label className="fx-field">
-              <span>Threshold (bp)</span>
+              <span>Allocator threshold (bp)</span>
               <input
                 type="number"
                 step={1}
@@ -313,6 +335,11 @@ export function FeeExplorer() {
               />
             </label>
           </div>
+          <div className="fx-panel-note">
+            Two distinct thresholds in this panel: the <em>allocator threshold</em> above is the
+            entry gate the policy uses; the <em>break-even floor</em> in the metrics row below
+            is just the round-trip taker-taker fee (what your edge has to clear).
+          </div>
         </div>
       </div>
 
@@ -326,11 +353,11 @@ export function FeeExplorer() {
           <div className="fx-metric-sub">threshold − r.t. fee</div>
         </div>
         <div className="fx-metric">
-          <div className="fx-metric-label">Break-even threshold</div>
+          <div className="fx-metric-label">Break-even floor (r.t. fee)</div>
           <div className="fx-metric-value">
             {(fee.roundTripTakerTaker * 100).toFixed(3)}%
           </div>
-          <div className="fx-metric-sub">r.t. taker-taker floor</div>
+          <div className="fx-metric-sub">spread you must clear before any net edge</div>
         </div>
         <div className="fx-metric">
           <div className="fx-metric-label">Est. trades / coin / day</div>

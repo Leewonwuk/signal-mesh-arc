@@ -84,26 +84,26 @@
 
   <!-- Title block -->
   <g transform="translate(120,80)">
-    <text font-family="Inter, system-ui, sans-serif" font-size="64" font-weight="800" fill="#ffffff">Signal Mesh <tspan fill="#22d3ee">on Arc</tspan></text>
-    <text y="60" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#a5b4fc">An agent-to-agent nanopayment marketplace for crypto arbitrage signals.</text>
+    <text font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="#ffffff"><tspan fill="#22d3ee">Alpha</tspan>Loop</text>
+    <text y="60" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#a5b4fc">The agent-to-agent alpha loop on Arc — fed by a live v1.3 production arb bot.</text>
   </g>
 
   <!-- Bottom band: metrics -->
   <g transform="translate(120,740)">
     <rect x="0" y="0" width="1360" height="100" rx="16" fill="#0c1633" stroke="#1e2a4a"/>
-    <text x="40" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">per-signal price</text>
-    <text x="40" y="78" font-family="Menlo, monospace" font-size="28" fill="#22d3ee" font-weight="700">$0.002 – $0.01</text>
+    <text x="40" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">per-action pricing (variable)</text>
+    <text x="40" y="78" font-family="Menlo, monospace" font-size="28" fill="#22d3ee" font-weight="700">$0.0005 – $0.010</text>
 
-    <text x="300" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">on-chain tx / 2-min demo</text>
-    <text x="300" y="78" font-family="Menlo, monospace" font-size="28" fill="#a855f7" font-weight="700">50+</text>
+    <text x="340" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">on-chain tx per demo</text>
+    <text x="340" y="78" font-family="Menlo, monospace" font-size="28" fill="#a855f7" font-weight="700">150 + 5 ERC-8004</text>
 
-    <text x="620" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">data backing GBM</text>
-    <text x="620" y="78" font-family="Menlo, monospace" font-size="28" fill="#f5d0fe" font-weight="700">87 pairs · ~7.5M rows</text>
+    <text x="660" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">backed by</text>
+    <text x="660" y="78" font-family="Menlo, monospace" font-size="28" fill="#4ade80" font-weight="700">v1.3 EC2 arb bot · live</text>
 
-    <text x="960" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">gas / price ratio on Arc</text>
-    <text x="960" y="78" font-family="Menlo, monospace" font-size="28" fill="#4ade80" font-weight="700">0.34%</text>
+    <text x="1020" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">track</text>
+    <text x="1020" y="78" font-family="Menlo, monospace" font-size="24" fill="#fbbf24" font-weight="700">Agent-to-Agent Loop</text>
 
-    <text x="1260" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">chain</text>
-    <text x="1260" y="78" font-family="Menlo, monospace" font-size="28" fill="#ffffff" font-weight="700">Arc</text>
+    <text x="1280" y="40" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#94a3c4">chain</text>
+    <text x="1280" y="78" font-family="Menlo, monospace" font-size="28" fill="#ffffff" font-weight="700">Arc</text>
   </g>
 </svg>

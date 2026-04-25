@@ -1,22 +1,63 @@
 /**
- * Arc Bridge — Signal Mesh
+ * Arc Bridge — AlphaLoop
  *
  * Routes:
  *   POST /signals/publish      — producers post raw signals (free, internal)
  *   GET  /signals/latest       — 402-paywalled (x402) — $0.002 per fetch (raw)
- *   GET  /signals/premium      — 402-paywalled (x402) — $0.01 per fetch (meta)
+ *   GET  /signals/premium      — 402-paywalled (x402) — variable per fetch (meta)
  *   GET  /health               — liveness probe
  *   GET  /tx/recent            — recent on-chain settlement tx hashes (for dashboard)
  *   POST /tx/report            — executor reports a settled Arc tx hash
  *   POST /signals/outcome      — executor reports realized PnL per signal
  *   GET  /producer/reliability — per-producer hit-rate over the last N outcomes
+ *   GET  /.well-known/agent-card/:role  — ERC-8004 registration-v1 card per wallet
+ *   GET  /agent-cards/:role    — same as above, convenience alias
  */
 import 'dotenv/config'
 import express from 'express'
 import type { Request, Response } from 'express'
+import fs from 'node:fs'
+import path from 'node:path'
 
 const app = express()
 app.use(express.json({ limit: '1mb' }))
+
+// --- ERC-8004 agent-card serving --------------------------------------------
+// Four wallet-specific registration-v1 JSON documents live at
+// ../agent-cards/<role>.json. We expose them at both /.well-known/agent-card/
+// (the canonical discovery path) and /agent-cards/ (a convenience alias the
+// dashboard uses to deep-link from the "Agent identity" requirement badge).
+const AGENT_CARDS_DIR = path.resolve(import.meta.dirname, '..', 'agent-cards')
+const AGENT_CARD_ROLES = new Set([
+  'producer-dual-quote',
+  'producer-kimchi',
+  'meta-agent',
+  'executor-agent',
+])
+function serveAgentCard(req: Request, res: Response) {
+  const role = String(req.params.role || '').replace(/\.json$/, '')
+  if (!AGENT_CARD_ROLES.has(role)) {
+    return res.status(404).json({ error: 'unknown agent role', valid: [...AGENT_CARD_ROLES] })
+  }
+  try {
+    const body = fs.readFileSync(path.join(AGENT_CARDS_DIR, `${role}.json`), 'utf8')
+    res.type('application/json').send(body)
+  } catch (e) {
+    res.status(500).json({ error: 'card not found on disk', detail: String(e) })
+  }
+}
+app.get('/.well-known/agent-card/:role', serveAgentCard)
+app.get('/agent-cards/:role', serveAgentCard)
+app.get('/.well-known/agent-cards', (_req, res) => {
+  res.json({
+    cards: [...AGENT_CARD_ROLES].map(role => ({
+      role,
+      url: `/.well-known/agent-card/${role}`,
+    })),
+    spec: 'https://eips.ethereum.org/EIPS/eip-8004',
+    project: 'AlphaLoop',
+  })
+})
 
 // --- x402 paywall (optional; toggled by X402_ENABLED=1) ---------------------
 // The x402 facilitator's default Coinbase server historically hardcodes

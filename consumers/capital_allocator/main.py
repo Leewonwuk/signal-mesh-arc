@@ -236,25 +236,62 @@ class FeatureSource:
             return None
 
     def collect(self) -> tuple[FeatureCache, bool]:
-        """Return (features, any_fresh). Caller decides cold routing."""
-        # Regime override hooks — used by verification harness + SUBMISSION §12
-        # "forced regime flip" demo. Set any of FORCE_{VOL,FUNDING,KIMCHI,USDC}
-        # to a float (or "none" to force cold sentinel).
-        def _env_override(name: str, real: Optional[float]) -> Optional[float]:
+        """Return (features, any_fresh). Caller decides cold routing.
+
+        Resolution order per feature:
+          1. FORCE_{VOL,FUNDING,KIMCHI,USDC} env var (verification harness / §12 flip)
+          2. ml/regime_override.json file (demo regime injector — see demo/regime_injector.py)
+          3. Live REST / bridge signal
+        """
+        # 1. env override hooks
+        def _env_override(name: str) -> tuple[bool, Optional[float]]:
             raw = os.environ.get(f"FORCE_{name}")
             if raw is None:
-                return real
+                return False, None
             if raw.lower() in ("none", "null", ""):
-                return None
+                return True, None
             try:
-                return float(raw)
+                return True, float(raw)
             except ValueError:
-                return real
+                return False, None
 
-        vol = _env_override("VOL", self._binance_vol_8h())
-        fund = _env_override("FUNDING", self._binance_funding_median())
-        kimchi = _env_override("KIMCHI", self._bridge_signal_premium("kimchi_agent"))
-        usdc = _env_override("USDC", self._bridge_signal_premium("dual_quote_agent"))
+        # 2. file override — re-read each tick so a rotating injector can live-swap
+        override_path = os.environ.get(
+            "ARC_REGIME_OVERRIDE",
+            str(_REPO_ROOT / "ml" / "regime_override.json"),
+        )
+        file_override: dict = {}
+        try:
+            p = Path(override_path)
+            if p.exists():
+                file_override = json.loads(p.read_text(encoding="utf-8"))
+        except Exception as e:
+            log.debug("regime_override read fail: %s", e)
+
+        def _file_override(key: str) -> tuple[bool, Optional[float]]:
+            if key not in file_override:
+                return False, None
+            v = file_override[key]
+            if v is None or (isinstance(v, str) and v.lower() in ("none", "null", "")):
+                return True, None
+            try:
+                return True, float(v)
+            except (TypeError, ValueError):
+                return False, None
+
+        def _resolve(env_name: str, file_key: str, real: Optional[float]) -> Optional[float]:
+            got, v = _env_override(env_name)
+            if got:
+                return v
+            got, v = _file_override(file_key)
+            if got:
+                return v
+            return real
+
+        vol = _resolve("VOL", "vol", self._binance_vol_8h())
+        fund = _resolve("FUNDING", "funding_median", self._binance_funding_median())
+        kimchi = _resolve("KIMCHI", "kimchi_premium", self._bridge_signal_premium("kimchi_agent"))
+        usdc = _resolve("USDC", "usdc_spread", self._bridge_signal_premium("dual_quote_agent"))
 
         now = time.time()
         if vol is not None:

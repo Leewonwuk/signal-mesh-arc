@@ -1,0 +1,87 @@
+1
+00:00:00,500 --> 00:00:03,500
+This is the Circle Developer Console.
+
+2
+00:00:03,500 --> 00:00:06,500
+I have four Circle developer-controlled wallets
+
+3
+00:00:06,500 --> 00:00:09,500
+provisioned for four of the five agents
+
+4
+00:00:09,500 --> 00:00:11,500
+in my marketplace.
+
+5
+00:00:11,500 --> 00:00:14,500
+The v3 funding producer is operator-controlled
+
+6
+00:00:14,500 --> 00:00:17,000
+pending Circle SCA rotation,
+
+7
+00:00:17,000 --> 00:00:19,500
+honestly disclosed in its agent-card.
+
+8
+00:00:19,500 --> 00:00:21,500
+Here's one — producer_kimchi —
+
+9
+00:00:21,500 --> 00:00:24,500
+funded with 20 USDC from the Arc faucet.
+
+10
+00:00:25,000 --> 00:00:28,000
+I'll send a settlement tx from the Console —
+
+11
+00:00:28,000 --> 00:00:31,000
+point-zero-one USDC to the meta agent.
+
+12
+00:00:31,000 --> 00:00:33,000
+Transaction queued.
+
+13
+00:00:35,000 --> 00:00:38,500
+And here on Arc Block Explorer —
+
+14
+00:00:38,500 --> 00:00:40,800
+block confirmed,
+
+15
+00:00:40,800 --> 00:00:43,000
+token transfer event,
+
+16
+00:00:43,000 --> 00:00:46,500
+one-cent USDC moved from agent wallet
+
+17
+00:00:46,500 --> 00:00:48,500
+to agent wallet.
+
+18
+00:00:49,000 --> 00:00:51,500
+One tx via the Console.
+
+19
+00:00:51,500 --> 00:00:53,500
+Verified on arcscan.
+
+20
+00:00:53,500 --> 00:00:56,500
+The full demo runs one-hundred-fifty
+
+21
+00:00:56,500 --> 00:00:58,500
+variably-priced settlements
+
+22
+00:00:58,500 --> 00:01:00,000
+through the AlphaLoop pipeline.

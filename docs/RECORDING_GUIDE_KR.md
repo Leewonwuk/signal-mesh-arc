@@ -134,12 +134,12 @@
 **준비:**
 - S5 씬에 커버 이미지 + GitHub URL 큰 글씨 미리 배치
 - `https://github.com/Leewonwuk/signal-mesh-arc`
-- `https://signal-mesh.vercel.app`
+- YouTube 영상 URL (업로드 후 추가)
 
 **진행:**
 1. S5 씬으로 전환
-2. 보이스오버:
-   > "Repo, live dashboard, product feedback — all linked in the submission. Signal Mesh on Arc. Thanks for judging."
+2. 보이스오버 (VIDEO_SCRIPT_KR.md 2:50 최신판과 동기):
+   > "One-fifty variably-priced tx, closing the loop. One unit of account. Zero humans in the gas tank. Open the repo, fire the demo, watch the allocator pick. AlphaLoop — on Arc."
 3. 3:00에 페이드아웃
 
 ---

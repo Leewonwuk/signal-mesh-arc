@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AlphaLoop — Scoreboard</title>
+  <meta name="description" content="Judge-ready scoreboard for the AlphaLoop Arc hackathon submission. Every number links to its on-chain or served source." />
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 32px 24px 80px;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0b1020 0%, #0f1a3a 60%, #0b1020 100%);
+      color: #f8fafc; min-height: 100vh;
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+    h1 {
+      font-size: 36px; margin: 0 0 4px; letter-spacing: -0.02em; font-weight: 800;
+    }
+    h1 .accent { color: #22d3ee; }
+    .sub { color: #94a3c4; font-size: 14px; margin-bottom: 24px; }
+    .grid {
+      display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-bottom: 24px;
+    }
+    .card {
+      background: #111a35; border: 1px solid #1e2a4a; border-radius: 14px;
+      padding: 16px 18px;
+    }
+    .card .label {
+      color: #94a3c4; font-size: 11px; letter-spacing: 0.08em;
+      text-transform: uppercase; font-weight: 600;
+    }
+    .card .value {
+      font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums;
+      margin-top: 6px; overflow-wrap: anywhere;
+    }
+    .card .value.cyan { color: #22d3ee; }
+    .card .value.green { color: #4ade80; }
+    .card .value.purple { color: #a855f7; }
+    .card .value.amber { color: #fbbf24; }
+    .card .sub2 { color: #94a3c4; font-size: 11px; margin-top: 6px; }
+    .card a { color: inherit; text-decoration: none; border-bottom: 1px dashed #1e2a4a; }
+    .card a:hover { border-bottom-color: #22d3ee; }
+    .hero {
+      background: linear-gradient(135deg, rgba(34,211,238,0.06), rgba(168,85,247,0.04));
+      border: 1px solid #22d3ee44; padding: 20px; border-radius: 14px;
+      display: grid; gap: 12px; grid-template-columns: 1fr 1fr;
+      align-items: center; margin-bottom: 24px;
+    }
+    .hero .big {
+      font-size: 48px; font-weight: 800; color: #22d3ee; letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums; line-height: 1.1;
+    }
+    .hero .tag {
+      color: #94a3c4; font-size: 14px;
+    }
+    .agent-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    .agent-table th, .agent-table td {
+      padding: 10px 14px; text-align: left; border-bottom: 1px solid #1e2a4a;
+      font-size: 13px;
+    }
+    .agent-table th { color: #94a3c4; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+    .agent-table td code {
+      font-family: Menlo, monospace; font-size: 12px; color: #a855f7;
+    }
+    .agent-table td a { color: #22d3ee; text-decoration: none; }
+    .agent-table td a:hover { text-decoration: underline; }
+    footer {
+      margin-top: 36px; color: #94a3c4; font-size: 12px;
+      border-top: 1px dashed #1e2a4a; padding-top: 16px;
+    }
+    .pulse {
+      display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      background: #4ade80; box-shadow: 0 0 8px #4ade80;
+      animation: pulse 1.6s infinite; margin-right: 8px;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1><span class="pulse"></span><span class="accent">Alpha</span>Loop — Scoreboard</h1>
+    <div class="sub">
+      Judge-ready verification page. Every number below is a claim you can
+      re-derive without running our code. Hackathon: lablab.ai Agentic Economy
+      on Arc · Track 2: Agent-to-Agent Payment Loop · submitted 2026-04.
+    </div>
+
+    <div class="hero">
+      <div>
+        <div style="color:#94a3c4;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">
+          On-chain evidence artifact
+        </div>
+        <div class="big">150 tx + 5 ERC-8004</div>
+        <div class="tag">
+          150 variably-priced USDC settlements ($0.0005 – $0.010) via Circle
+          Developer API · 1 registry deploy + 4 <code>AgentRegistered</code>
+          events on Arc testnet chainId 5042002.
+        </div>
+      </div>
+      <div>
+        <div style="color:#94a3c4;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">
+          Moat (only in Track 2)
+        </div>
+        <div style="font-size:22px;font-weight:700;color:#4ade80;line-height:1.3;">
+          Live v1.3 production arb bot on EC2
+        </div>
+        <div class="tag">
+          9 coins, pool ≈ $1,977 USDT, Binance VIP-0 threshold 0.17%, running right
+          now. <strong style="color:#4ade80;">Last 8 days: 648 trades · +$17.92 PnL · 0 stop-loss triggers.</strong>
+          Every demo price is a price the production bot actually saw — full per-coin
+          breakdown in <code style="font-family:Menlo,monospace;font-size:11px;">docs/evidence/v1_3_live_stats_260411-260419.json</code>.
+          No other Track 2 submission has a live revenue system behind its demo.
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">ERC-8004 Registry <span style="display:inline-block;padding:1px 6px;border-radius:4px;background:rgba(74,222,128,0.12);color:#4ade80;font-size:9px;letter-spacing:0.04em;font-weight:700;text-transform:uppercase;border:1px solid rgba(74,222,128,0.4);margin-left:4px;">source verified</span></div>
+        <div class="value cyan">
+          <a href="https://testnet.arcscan.app/address/0xb276b96f2da05c46b60d4b38e9beaf7d3355b7ab" target="_blank" rel="noreferrer">0xb276…b7ab</a>
+        </div>
+        <div class="sub2">AlphaLoopAgentRegistry on Arc testnet. Click → <strong>Code tab</strong> for full Solidity source.</div>
+      </div>
+
+      <div class="card">
+        <div class="label">On-chain settlement burst</div>
+        <div class="value purple">150 USDC tx</div>
+        <div class="sub2">variably priced $0.0005 – $0.010 · 60/30/10 tier · Circle Developer API</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Merkle root (150-tx manifest)</div>
+        <div class="value amber" style="font-size:14px;">400039d5af1f5ea1ab6ee6068df6274d2b360f523b63b545e88e03aa06605b80</div>
+        <div class="sub2">Run <code>make verify</code> to recompute. Edits to the evidence file fail the check.</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Code repo</div>
+        <div class="value">
+          <a href="https://github.com/Leewonwuk/signal-mesh-arc" target="_blank" rel="noreferrer">github.com/Leewonwuk/signal-mesh-arc</a>
+        </div>
+        <div class="sub2">Public · MIT licensed</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Live dashboard</div>
+        <div class="value">
+          <a href="https://signal-mesh.vercel.app" target="_blank" rel="noreferrer">signal-mesh.vercel.app</a>
+        </div>
+        <div class="sub2">Static scaffold · pitch video shows the live feed over local bridge</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Production backing</div>
+        <div class="value green">v1.3 bot on EC2</div>
+        <div class="sub2">9 coins · pool ≈ $1,977 USDT · threshold 0.17% · running now</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:32px;margin-bottom:12px;font-size:16px;color:#94a3c4;letter-spacing:0.08em;text-transform:uppercase;">
+      Four agent identities (ERC-8004 registration-v1)
+    </h2>
+    <table class="agent-table">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Wallet</th>
+          <th>Card (sha256 → on-chain event contentHash)</th>
+          <th>Register tx</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>producer_dual_quote</strong><br/><span style="color:#94a3c4;font-size:11px;">Live v1.3 replay</span></td>
+          <td><code>0xc3cd155b…44c3a0</code></td>
+          <td><a href="/.well-known/agent-card/producer-dual-quote.json">/agent-card</a> · <code>0x91846a12…80efd9e</code></td>
+          <td><a href="https://testnet.arcscan.app/tx/0xa9c56517c8da5b14c05264c45f3b37fc12efd2d182a79550ea22c9e560953a93" target="_blank" rel="noreferrer">0xa9c5…0a93</a></td>
+        </tr>
+        <tr>
+          <td><strong>producer_kimchi</strong><br/><span style="color:#94a3c4;font-size:11px;">Synthetic AR(1)</span></td>
+          <td><code>0x7f190347…cf27f</code></td>
+          <td><a href="/.well-known/agent-card/producer-kimchi.json">/agent-card</a> · <code>0xbf8dfc36…07228640907ff</code></td>
+          <td><a href="https://testnet.arcscan.app/tx/0xc8e39c5e22be9f34f3980ffd8a682d34b807d48d6bc2b09cc22e16850193c2ff" target="_blank" rel="noreferrer">0xc8e3…93c2ff</a></td>
+        </tr>
+        <tr>
+          <td><strong>producer_funding</strong><br/><span style="color:#94a3c4;font-size:11px;">v3 · Binance fapi (live)</span></td>
+          <td><code>0xf90a57d3…565df</code></td>
+          <td><a href="/.well-known/agent-card/producer-funding.json">/agent-card</a> · <code>0x84744682…d3bab244</code></td>
+          <td><a href="https://testnet.arcscan.app/tx/0xc331169ba725b344bdb8ccfdde9d07773433941e5ee6806ade3db86a214a8f06" target="_blank" rel="noreferrer">0xc331…14a8f06</a></td>
+        </tr>
+        <tr>
+          <td><strong>meta_agent</strong><br/><span style="color:#94a3c4;font-size:11px;">Gemini 2.5 Flash + stub</span></td>
+          <td><code>0xf8f1ae7b…466a0f</code></td>
+          <td><a href="/.well-known/agent-card/meta-agent.json">/agent-card</a> · <code>0xf89a9fcb…bdea219</code></td>
+          <td><a href="https://testnet.arcscan.app/tx/0x9c8d6a32986b0c3236b86aae5b6bd944490cabd6eb72d9cdf4d2df85b03d7101" target="_blank" rel="noreferrer">0x9c8d…d7101</a></td>
+        </tr>
+        <tr>
+          <td><strong>executor_agent</strong><br/><span style="color:#94a3c4;font-size:11px;">Variable-price x402 settler</span></td>
+          <td><code>0x4d61a397…d2d819</code></td>
+          <td><a href="/.well-known/agent-card/executor-agent.json">/agent-card</a> · <code>0x6d23188e…acacf</code></td>
+          <td><a href="https://testnet.arcscan.app/tx/0x70ac0649289cf435405fb0d2378189f48e24dd417730992001620c5b9bbd26ab" target="_blank" rel="noreferrer">0x70ac…d26ab</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer>
+      Each agent card's sha256 digest matches the <code>contentHash</code>
+      parameter in its corresponding <code>AgentRegistered</code> event emitted
+      by <a href="https://testnet.arcscan.app/address/0xb276b96f2da05c46b60d4b38e9beaf7d3355b7ab" target="_blank" rel="noreferrer">the registry</a>.
+      Tamper with a card → contentHash changes → mismatch is trivially detectable.
+      Welcome to the easy-to-audit side of the agent economy.
+    </footer>
+  </div>
+</body>
+</html>

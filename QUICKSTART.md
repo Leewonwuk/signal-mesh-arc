@@ -1,4 +1,6 @@
-# Signal Mesh on Arc — Quickstart
+# AlphaLoop — Quickstart
+
+> Project codename **AlphaLoop** (formerly working title "Signal Mesh on Arc"). Repo + Vercel URL retain the legacy string `signal-mesh-*`.
 
 ## 1. 🧑 User manual steps (prerequisites)
 

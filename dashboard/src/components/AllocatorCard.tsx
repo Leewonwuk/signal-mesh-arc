@@ -146,11 +146,14 @@ export function AllocatorCard() {
   // line that pre-empts "is the RL just decoration?" critique.
   const qDefence = useMemo(() => {
     if (!entry) return null
+    if (!Array.isArray(entry.q_values) || entry.q_values.length === 0) return null
     const chosen = entry.q_values[entry.action_idx]
+    if (chosen == null || !Number.isFinite(chosen)) return null
     const sortedDesc = [...entry.q_values].sort((a, b) => b - a)
-    const secondBest =
+    const secondBestRaw =
       entry.q_value_second_best ??
       (sortedDesc[0] === chosen ? sortedDesc[1] : sortedDesc[0])
+    const secondBest = Number.isFinite(secondBestRaw) ? secondBestRaw : chosen
     const explore = entry.exploration_bonus
     return { chosen, secondBest, explore }
   }, [entry])
@@ -162,9 +165,9 @@ export function AllocatorCard() {
   return (
     <section className="card allocator-card">
       <div className="alloc-header">
-        <h2 style={{ margin: 0 }}>Capital Allocator · Q-learning</h2>
+        <h2 style={{ margin: 0 }}>Capital Allocator · Q-learning (Reinforcement Learning)</h2>
         <span className="alloc-cadence-badge" title="decision cadence; feature windows always trailing 8h">
-          demo cadence: 30s · prod: 8h
+          demo cadence: {entry?.cadence_seconds ? `${entry.cadence_seconds}s` : '20s'} · prod: 8h
         </span>
       </div>
 

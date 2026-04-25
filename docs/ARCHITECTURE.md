@@ -1,11 +1,11 @@
-# Architecture — Signal Mesh on Arc
+# Architecture — AlphaLoop (formerly "Signal Mesh on Arc")
 
 ## Design principles
 
 1. **Reuse, don't rewrite.** v1.1 (`spread_calc`, `signal`) and v1.3 (`capital_allocator_v12`, `live_engine_v2`) signal-generation code is imported verbatim; only the execution side is replaced with a signal-publish call.
 2. **Language per strength.** Python for trading / numerical code (reuse). TypeScript for Arc / web3 (SDK ecosystem).
 3. **Real onchain.** Every signal consumption = one real Arc testnet USDC transfer. No simulation, no JSON ledger cop-out.
-4. **Two signal tiers.** Raw signals ($0.002) prove the primitive. Gemini-annotated premium signals ($0.01) prove the value-add.
+4. **Variable-priced signals.** Per-action pricing $0.0005 – $0.010 (60/30/10 low/mid/high-confidence tier), sampled from the signal-quality distribution the executor's `pricing_policy.choose_price` emits. No flat tier constants.
 
 ---
 

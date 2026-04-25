@@ -79,10 +79,29 @@ def main() -> None:
                     help="demo threshold — lower than prod to guarantee signals")
     ap.add_argument("--duration", type=int, default=120,
                     help="seconds before summary + shutdown")
-    ap.add_argument("--with-kimchi", action="store_true",
-                    help="also launch the kimchi producer (synthetic KRW/USDT) - "
-                         "gives the meta-agent cross-producer conflicts to arbitrate")
+    ap.add_argument("--with-kimchi", action="store_true", default=True,
+                    help="also launch the kimchi producer (synthetic KRW/USDT). "
+                         "Default ON so the allocator's v1 lane has a live producer. "
+                         "Pass --no-with-kimchi to skip.")
+    ap.add_argument("--no-with-kimchi", dest="with_kimchi", action="store_false",
+                    help="disable the kimchi producer (opt-out of v1 lane)")
     ap.add_argument("--kimchi-symbol", default="BTC")
+    ap.add_argument("--with-funding", action="store_true", default=True,
+                    help="launch the funding-rate producer (v3 lane). Default ON. "
+                         "Demo cadence 30s. Pass --no-with-funding to skip.")
+    ap.add_argument("--no-with-funding", dest="with_funding", action="store_false",
+                    help="disable the funding producer (opt-out of v3 lane)")
+    ap.add_argument("--funding-symbol", default="DOGE",
+                    help="Symbol for funding producer (default DOGE, must be on Binance fapi)")
+    ap.add_argument("--funding-cadence-sec", type=float, default=30.0,
+                    help="Demo cadence for funding producer; prod is 8h=28800")
+    ap.add_argument("--funding-demo-threshold", type=float, default=0.00002,
+                    help="Demo entry-funding-rate threshold for v3. Production is "
+                         "0.0005 (0.05%/8h ≈ 54%% APR), but at any given live moment "
+                         "few of the 9 v1.3 coins clear that bar — so a 90s recording "
+                         "would show v3=0 signals. Demo softens to 0.00002 (0.002%/8h) "
+                         "so the v3 lane visibly emits during the demo window. "
+                         "The dashboard's StrategyCards labels this as 'demo threshold'.")
     ap.add_argument("--pretrain-q", action="store_true",
                     help="run scripts/pretrain_q before launching the executor so the "
                          "Q-table boots warm (F3 cold-start mitigation). Skip if you "
@@ -101,6 +120,19 @@ def main() -> None:
     ap.add_argument("--with-allocator", action="store_true", default=True,
                     help="launch capital_allocator consumer alongside meta/executor "
                          "(F3 — the v3 funding allocation lane). Default ON.")
+    ap.add_argument("--with-regime-injector", action="store_true", default=True,
+                    help="rotate ml/regime_override.json through populated Q-table "
+                         "cells so Policy Heatmap + AllocatorCard show non-s8 activity "
+                         "during the 2-min demo. Default ON. Honesty: this is a demo-only "
+                         "aid — prod allocator (8h cadence) reads live Binance REST.")
+    ap.add_argument("--regime-rotation",
+                    default="s4,s2,s0,s5,s3,s7",
+                    help="comma-separated regime keys to rotate through "
+                         "(see demo/regime_injector.py RECIPES). Default hits all three "
+                         "corner actions: ALL_V1 (s4/s5), ALL_V2 (s2/s3/s7), ALL_V3 (s0).")
+    ap.add_argument("--regime-interval", type=int, default=12,
+                    help="seconds between regime flips. 12s ≈ 1 flip per allocator-tick "
+                         "at default 20s cadence, so the heatmap updates visibly.")
     args = ap.parse_args()
 
     # Sanity: bridge alive?
@@ -142,13 +174,30 @@ def main() -> None:
             time.sleep(0.4)
 
         if args.with_kimchi:
-            print("[demo] launching kimchi producer (synthetic)…")
+            print("[demo] launching kimchi producer (v1 lane, synthetic AR(1))…")
             procs.append(_launch(
                 [py, "-m", "producers.kimchi_agent.main",
                  "--symbol", args.kimchi_symbol,
                  "--tick-interval", "1",
                  "--max-ticks", str(max(60, args.duration))],
                 "producer_kimchi",
+            ))
+            time.sleep(0.5)
+
+        if args.with_funding:
+            print(
+                f"[demo] launching funding producer (v3 lane, Binance fapi live, "
+                f"demo entry threshold {args.funding_demo_threshold:.5f} = "
+                f"{args.funding_demo_threshold*100:.4f}%/8h)…"
+            )
+            procs.append(_launch(
+                [py, "-m", "producers.funding_agent.main",
+                 "--symbol", args.funding_symbol,
+                 "--live",
+                 "--demo-cadence-sec", str(args.funding_cadence_sec),
+                 "--entry-funding-rate", str(args.funding_demo_threshold),
+                 "--max-duration-sec", str(max(60, args.duration))],
+                "producer_funding",
             ))
             time.sleep(0.5)
 
@@ -180,6 +229,16 @@ def main() -> None:
                      "--verbose"],
                     "allocator",
                 ))
+
+                if args.with_regime_injector:
+                    print("[demo] launching regime_injector (stub — demo-only) …")
+                    procs.append(_launch(
+                        [py, "-m", "demo.regime_injector",
+                         "--rotation", args.regime_rotation,
+                         "--interval", str(args.regime_interval),
+                         "--verbose"],
+                        "regime_injector",
+                    ))
 
         print(f"[demo] running for {args.duration}s…")
         t0 = time.time()

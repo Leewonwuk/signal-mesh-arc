@@ -1,0 +1,47 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AlphaLoop / meta_agent",
+  "description": "Arbitration agent. Consumes raw signals from producers, applies Gemini 2.5 Flash reasoning (with deterministic local stub fallback on quota/503), and emits premium signals for the executor. Weighted by producer reliability score.",
+  "version": "1.0.0",
+  "registrations": [
+    {
+      "chainId": 5042002,
+      "agentAddress": "0xf8f1ae7b49901e6a93b5ddf7f5bd7af998466a0f",
+      "signatureScheme": "circle-sca-entity-secret",
+      "custodyModel": "circle-developer-controlled-wallet"
+    }
+  ],
+  "services": [
+    {
+      "name": "signals.arbitrate",
+      "endpoint": "internal:consumers/meta_agent/main.py",
+      "protocol": "pull-loop",
+      "description": "Poll bridge /signals/latest, apply Gemini-or-stub arbitration, republish premium."
+    }
+  ],
+  "capabilities": {
+    "llm": "gemini-2.5-flash",
+    "fallback": "deterministic-stub (bayesian hit-rate shrink + disagree penalty + regime heuristic)",
+    "arbitrationMode": "hit-rate-weighted-voting",
+    "settlementUnit": "USDC"
+  },
+  "supportedTrust": [
+    "reputation-via-realized-pnl",
+    "transparent-stub-fallback"
+  ],
+  "reputation": {
+    "source": "https://signal-mesh-bridge.fly.dev/producer/reliability",
+    "role": "weights-producers-not-itself"
+  },
+  "links": {
+    "github": "https://github.com/Leewonwuk/signal-mesh-arc",
+    "dashboard": "https://signal-mesh.vercel.app",
+    "submission": "https://github.com/Leewonwuk/signal-mesh-arc/blob/main/docs/SUBMISSION.md#5-circle-products-used"
+  },
+  "metadata": {
+    "project": "AlphaLoop",
+    "track": "Agent-to-Agent Payment Loop",
+    "hackathon": "lablab.ai Agentic Economy on Arc · 2026-04",
+    "license": "MIT"
+  }
+}

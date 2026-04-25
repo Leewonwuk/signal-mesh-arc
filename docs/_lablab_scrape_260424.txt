@@ -1,0 +1,776 @@
+[Saved cleaned text — 39244 chars, 774 lines]
+
+Agentic Economy on Arc | Lablab.ai
+0
+Agentic Economy on Arc
+The Agent Economy Built for Sub-Cent Transactions
+In this hybrid hackathon powered by Arc and Circle , developers will build the next generation of Agentic economic applications using Circle’s Nanopayments infrastructure with settlement on Arc in USDC.
+For the first time, high-frequency, usage-based transactions between users, APIs, and AI agents can operate without gas overhead eroding margin. Arc provides stablecoin-native settlement with predictable, dollar-denominated USDC fees and deterministic, sub-second finality — enabling real-time coordination and economically viable per-action pricing at scale.
+📅 April 20 – 26, 2026
+﻿• Apr 20 – 25 (Online): Submit projects by Apr 25.
+• Apr 25 (On-site Build - SF, CA): Teams refine projects.
+• Apr 26 (On-site Demos & Awards - SF, CA): Live pitches & winners announced.
+Get guidance from Arc and Circle experts through on-site support.
+📍 On-site Venue (April 25-26):
+MindsDB SF AI Collective
+3154 17th St, San Francisco, California, USA
+🤝 Go solo or team up, it's your flow.
+🏆 Compete for a $15,000+ Prize Pool.
+📍 Please note: If approved for the on-site experience, you’ll also have the opportunity to showcase your project live. Travel and accommodation will not be covered.
+🧑🏻‍💻 Secure your spot now – sign up before the Kick-Off Stream!
+Sign up
+About
+Challenge
+Technology & Access
+Technology partners & Workshops
+Prizes
+Community & Social Channels
+What to Submit?
+Judging Criteria
+Hackathon Details
+Speakers
+Event Schedule
+Submissions
+Teams
+About
+Circle (NYSE: CRCL) is a global financial technology firm that enables businesses of all sizes to harness the power of digital currencies and public blockchains for payments, commerce, and financial applications worldwide. Circle is building the world’s largest, most-widely used, stablecoin network, and issues, through its regulated affiliates, USDC and EURC stablecoins.
+Arc is the purpose-built L1 blockchain from Circle and serves as the Economic OS for the internet — powering the programmable trust layer and transaction engine where capital, humans, and machines coordinate to drive real economic growth.
+Together, Nanopayments and Arc unlock a new economic primitive for the internet: programmable value that is finally viable at high frequency.
+Key benefits for developers:
+• Process sub-cent transactions on-chain, gas-free , with full control of funds
+• Align pricing precisely with usage — no margin lost to gas fees
+• Charge per API call, per query, per millisecond of compute, or per action
+Agentic Economy in action:
+• APIs monetize every request
+• AI agents pay for data and services in real time
+• Compute marketplaces priced by usage
+• Machine-to-machine commerce without intermediaries
+The internet made information programmable.
+Circle Nanopayments + Arc make value programmable — and economically viable.
+Challenge
+Build the Agentic Economy on Arc using USDC and Nanopayments.
+Your mission is to design and ship an application, agent, or developer tool that leverages programmable USDC and Nanopayments for economically viable transactions to unlock new economic models for APIs, AI Agents, marketplaces, or machine-to-machine commerce.
+You’ll choose one of the tracks below (or naturally align to one) and submit a working demo plus a clear explanation of your use case and feedback .
+You must align your project with at least one track. Winners are selected based on the best overall solutions, regardless of track.
+All submissions must :
+• Demonstrate real per-action pricing (≤ $0.01)
+• Show transaction frequency data (at least 50+ onchain transactions in demo)
+• Include a margin explanation: why this model would fail with traditional gas costs
+This forces economic proof, not just a demo.
+Tracks:
+🪙 Per-API Monetization Engine
+Build an API that charges per request using USDC, demonstrating viable per-call pricing at high frequency.
+🤖 Agent-to-Agent Payment Loop
+Create autonomous agents that pay and receive value in real time, proving machine-to-machine commerce without batching or custodial control.
+🧮 Usage-Based Compute Billing
+Design an application that charges per query, per compute unit, or per task with real-time settlement aligned to actual usage.
+🛒 Real-Time Micro-Commerce Flow
+Build a buyer or seller experience where economic activity is triggered and settled per interaction, not per subscription.
+💡 Product Feedback Incentive
+We’re offering $500 USDC in rewards to the teams that provide the most detailed and helpful feedback. To be eligible, teams must complete the feedback field as part of their final project submission .
+Your mission is to build and launch an AI-native product using X402 Payments - a programmable payments infrastructure designed for the next generation of agentic and automated economies.
+In this edition of Launch & Fund Your Startup , you’ll have 6 days to validate an idea, build a working prototype, and present a credible path toward real users and on-chain revenue.
+This challenge is open to everyone - from early-stage founders to existing startups looking to expand or pivot their products.
+Your submission should clearly show how your solution integrates or reimagines X402 Payments in the context of real-world financial interaction
+Tracks
+Choose one - or mix and match. Each track explores a core use case of programmable payments in the age of agentic systems:
+🤖 Agent-to-Agent Payments
+Challenge : Build a system where two or more agents autonomously trigger and settle payments—e.g., for usage-based services, access control, or dynamic pricing. Your product should demonstrate a working agentic payment loop with minimal human input.
+🧑‍💼Consumer AI Payments
+Challenge : Develop an AI assistant that can make payments on a user’s behalf—with built-in rules like spending limits, approval checkpoints, or identity verification (KYC/AML). Showcase how your product handles decision-making, compliance, and safeguards.
+🏢 B2B FinOps & Compliance
+Challenge : Build a tool for businesses to manage real-time payments and financial operations—like tracking cash flow, enforcing policies, or generating audit-ready records. Highlight automation, accuracy, and visibility into payment activity.
+🛒 On-chain Commerce Primitives
+Challenge : Launch a digital product or service with a built-in revenue model using X402. Think: token-gated access, real-time rev-splits, or instant payouts to contributors. Your prototype should demonstrate seamless, trustless commerce flows.
+Technology
+& Access
+Technology & Access
+To build your project, you will use Arc (settlement layer), USDC (value), and Circle developer infrastructure such as Gateway , Nanopayments , and x402 (web-native payment standard) where available.
+🔒 Required Technologies :
+• Arc - All transactions settle on Arc, an EVM-compatible Layer-1.
+• USDC - USDC is the native gas token and stablecoin on Arc and is used for gas fees, transfers, and smart contract interactions.
+• Circle Nanopayments - Infrastructure enabling economically viable sub-cent, high-frequency transactions.
+🔒 Additional Recommended Technologies :
+• Circle Wallets - Recommended core wallet solution for this hackathon.
+Use Circle Wallets as the primary wallet infrastructure in your submission to create secure, programmable wallets for users and agents.
+• Circle Gateway for a unified USDC balance instantly accessible crosschain
+• Circle Bridge Kit for moving USDC across chains
+🧩 3rd Party Tools :
+• x402 facilitator for verifying and submitting x402 payments
+Vyper tooling and reference implementations for agentic payments and trustless AI agent infrastructure:
+• Circle-titanoboa-sdk bridges Vyper + Titanoboa + x402 payments
+• Vyper-agentic-payments clearly focused on agent-driven payment flows
+• ERC-8004-vyper implements ERC-8004 trust layer for autonomous agents (identity, reputation, validation)
+Use the tools that best fit your track and product.
+🧠 Digital Resources via Circle Nanopayments:
+Leverage Circle Nanopayments and x402 to programmatically access premium, real-time data services and APIs powered by AIsa . These endpoints demonstrate how developers can monetize and consume data at a per-request level using USDC.
+👉 Explore the full API collection and integration examples on GitHub
+🧰 Developer Resources :
+• Arc Documentation
+• Nanopayments Documentation
+• Circle Documentation
+• Circle Github
+• Circle Developer Account
+• Youtube
+• Testnet faucet
+• Circle Developer Blog
+To get started, we highly encourage all participants to create a Circle Developer Account and use the same email they provide during hackathon registration.
+Technology partners
+Gemini is Google’s family of next-generation multimodal AI models designed for agent-driven commerce, capable of reasoning across text, images, code, video, and audio. Gemini also supports Function Calling , allowing agents to securely interact with Circle APIs and smart contracts as part of real-world payment and settlement workflows.
+Google AI Studio is a browser-based environment where developers and creators can easily explore and prototype with Gemini models - test prompts, refine outputs, and experiment with different modalities before integrating them into real-world applications through the Gemini API .
+Challenge :
+Build with Gemini models and Google AI Studio to power the intelligence and interface of your agents, then run them on Arc with USDC for agent-driven commerce.
+Your project should:
+• Use Gemini (via Google AI Studio or Gemini API) for reasoning, chat, or multimodal understanding, and Function Calling , enabling agents to interact directly with Circle APIs and smart contracts .
+• Run agent-driven or automated workflows that make decisions based on user input, data, or context.
+• Coordinate and settle value on Arc with USDC using Circle infrastructure (e.g. Circle Wallets, Circle CCTP/Bridge Kit, Circle Gateway) as part of your commerce flow (subscriptions, usage-based APIs, tipping, marketplace payments, etc.).
+Recommended Gemini Models :
+Participants are encouraged to select the Gemini model that best fits their agent use case:
+Gemini 3 Flash
+Recommended for transactional and payment agents . Optimized for speed and low latency , making it ideal for real-time commerce flows such as checkout, payment execution, balance checks, and on-chain confirmations.
+Gemini 3 Pro
+Designed for advanced reasoning and “Deep Think” capabilities . Ideal for agents that need to negotiate prices, analyze complex transaction histories, manage treasuries, or coordinate multi-step financial workflows .
+Multimodal Commerce Examples:
+Gemini’s multimodal capabilities enable new forms of agent-driven commerce, such as:
+• Using vision models to verify physical goods or delivery proof before releasing a USDC payment
+• Analyzing invoice or receipt images to automate settlement, reconciliation, or refunds on Arc
+Access to Technology:
+Participants can explore Gemini through
+two main options - both includ e
+free access :
+🌐
+Google AI Studio : A
+free, browser-based IDE for experimenting with Gemini. You can write prompts, test outputs, tweak parameters, and prototype without needing to set up billing or any API keys. Perfect for prototyping and rapid iteration during the hackathon.
+💻
+Gemini API : For developers ready to integrate Gemini directly into their apps. The free tier includes a
+monthly allowance of tokens
+for text and multimodal inputs/outputs, letting you test and build with Gemini’s core models at no cost. Paid usage only applies for higher-volume or production-level apps.
+🔓 Google Cloud Credits :
+New Google Cloud accounts receive $300 in free Google Cloud credits, valid for 90 days.
+These credits can be used across eligible Google Cloud services, including Gemini API usage , subject to Google Cloud’s standard terms and regional availability.
+👉 Learn more about Google Cloud’s free tier
+Note: After the free credits are used or expire, continued usage of billable services requires enabling billing on your Google Cloud account. Charges only apply if you choose to continue using paid services.
+🚀
+How to Get Started
+1. Visit the Gemini docs
+2. Follow the Quickstart Guide to explore Gemini in AI Studio
+3. Experiment with text, code, images, video, or audio prompts
+4. Build and test your multimodal agents or workflows
+📘 Resources:
+• Gemini API models
+• Gemini 3 Developer Guide
+• Gemini API pricing & models docs
+• Gemini API billing FAQ & limits
+• Google AI Studio official overview
+• Google AI Studio quickstart
+• Antigravity
+Featherless provides access to a wide range of specialized AI models across domains such as coding, medical, legal, and multilingual use cases. It enables developers to build agent-driven, cost-efficient AI systems , making it a strong fit for projects leveraging USDC and the Agentic Economy on Arc .
+Challenge :
+Specialized Model Routing Engine : Build an agent or API that routes each incoming task to the most suitable model from the Featherless catalog. Each inference should be priced and settled per request using USDC via Arc , demonstrating improved cost efficiency and output quality compared to general-purpose models.
+Access to Technology:
+Featherless will provide $25 in credits per participant , available to up to 1,000 participants on a first-come, first-served basis. Access is valid for 1 month from activation.
+👉 To activate your access, follow the setup guide below:
+🔘 Open Featherless Setup Guide (Includes QR & Free Access)
+🚀 How to Get Started with Featherless
+1. Open the setup guide using the link above
+2. Scan the QR code or follow the signup link inside the guide
+3. Create your account and activate your free Premium access
+4. Generate your API key from your account dashboard
+5. Choose a model from the catalog and start building
+📘 Resources:
+• Featherless Platform Overview
+• Featherless Documentation
+• Featherless Quickstart
+⚠️ Important Notes:
+• Feather Premium access is valid for 1 month from activation
+• Access is provided directly by Featherless and subject to their terms and availability
+• lablab.ai is not responsible for access provisioning or usage limitations
+• Participants are responsible for managing their API usage and securing their API keys
+AI/ML API provides access to a wide range of state-of-the-art AI models , including Gemini , Claude , and other leading models , through a unified API. It enables developers to quickly experiment, build, and scale AI-powered applications across text, image, and multimodal use cases.
+Access to Technology:
+AI/ML API will provide $10 in credits per participant , available to up to 1,000 participants . Access is activated via a promo code during signup.
+Access is valid until the winners announcment on the 26th of April.
+👉 Claim your unique promo here: AI/ML API Coupon
+🚀 How to Get Started with AI/ML API
+• Register on the AI/ML API website
+• Go to the billing section
+• Click redeem promocode on the banner
+• Enter your unique promo code (Instantly receive $10 on your account)
+• Up to 1,000 participants. First come first served.
+• For the technical support, visit AI/ML API Discord .
+Pro tip: start with smaller models for quick tests. Scale up when it counts
+⚠️ Important Notes:
+• Credits are provided by AI/ML AP I and are subject to their delivery
+• Credits are limited to 1,000 participant s and subject to availability
+• AI/ML API is a subscription-based service
+• If you do not plan to continue using the service after the hackathon, make sure to cancel your subscription to avoid charges
+• lablab.ai is not responsible for credit distribution or billing
+🎓 Workshops
+Get inspired and boost your skills with exclusive sessions from our partners and experts. Watch them anytime!
+lablab.ai
+Speaker: Joanna Slupczewska
+Head of Marketing
+Topic: Agentic Economy on Arc Hackathon Kick-Off Stream
+Featherless AI
+Speaker: Isaac Gemal
+Developer relations
+Topic: Featherless AI - Quick Start and Live Demo
+AIsa
+Speaker: Karen Sheng
+Chief Product Officer
+Topic: Pay-Per-Call AIsa APIs via Circle Nanopayments
+Prizes
+🏆 Main Hackathon Winners (USDC)
+⭐ On-site prizes
+🥇 1st place -
+💰 $3,000 in USDC
+🥈2nd place -
+💰 $1,500 in USDC
+🥉3rd place -
+💰 $1,000 in USDC
+⭐ Online prizes
+🥇 1st place -
+💰 $2,500 in USDC
+🥈2nd place -
+💰 $1,500 in USDC
+🏆 Product Feedback Incentive
+💰 Rewards from $500 in USDC
+💰 $500 USDC in rewards will be awarded to the teams that provide the most helpful and detailed feedback in the submission form as part of their final project.
+Open to all participants (On-site & Online).
+⭐ On-site prizes
+🥇1st place - $3,000 in Cash, 1000 Man-Hour credits worth $1500
+🥈2nd place - $2,000 in Cash, 500 Man-Hour credits worth $750
+🥉3rd place - $1,000 in Cash, 300 Man-Hour credits worth $450
+🥇 1st place - 💰 $3,000 in USDC
+🥈2nd place - 💰 $1,500 in USDC
+🥉3rd place - 💰 $1,000 in USDC
+⭐ Online prizes
+🥇 1st place - $500 in Cash, 100 Man-Hour credits worth $150
+🏆 Product Feedback Incentive
+💰 $500 USDC in rewards will be awarded to the teams that provide the most helpful and detailed feedback in the submission form as part of their final project.
+Open to all participants (On-site & Online).
+🥇 1st place - 💰 $2,500 in USDC
+🥈2nd place - 💰 $1,500 in USDC
+💰 Rewards from $500 in USDC
+🏆Google Prizes
+⭐ On-site prizes
+🥇 1st place - 💰 $2,000
+🥈2nd place - 💰 $1,400
+🥉3rd place - 💰 $800
+🥇 1st place - 💰 $2,000
+🥈2nd place - 💰 $1,400
+🥉3rd place - 💰 $800
+⭐ Online prizes
+🥇 1st place - 💰 $1,200
+🥈2nd place - 💰 $600
+🥇 1st place - 💰 $1,200
+🥈2nd place - 💰 $600
+🏆Featherless Prizes
+🥇 1st place - ⚡ 500 Featherless inference credits
+🥈2nd place - ⚡ 300 Featherless inference credits
+🥉3rd place - ⚡100 Featherless inference credits
+Please note: Participation in lablab.ai hackathons is voluntary. Prizes and opportunities depend on eligibility, availability, and third-party sponsors, for whom lablab.ai is not responsible. Hackathon rules, prizes, and terms may change or be canceled at our discretion. Submissions must be original and MIT-compliant. Prize distribution may take up to 90 days.
+Full details: Voluntary Participation & Prize Terms
+Community & Social Channels
+Stay connected with the teams behind the hackathon and follow along for updates, highlights, and future opportunities.
+lablab.ai
+X - LinkedIn - Facebook - Instagram - YouTube - Twitch - Website
+NativelyAI
+X - LinkedIn - Website
+Circle
+X - Community Hub - Discord
+Arc
+X - Discord
+What to submit?
+📋 Basic Information
+• Project Title
+• Short Description
+• Long Description
+• Technology & Category Tags
+📸 Cover Image and Presentation
+• Cover Image
+• Video Presentation
+• Slide Presentation
+💻 App Hosting & Code Repository
+• Public GitHub Repository
+• Demo Application Platform
+• Application URL
+📝 Circle Product Feedback (Required)
+Each team must complete the “ Circle Product Feedback ” field as part of their final project submission.
+💡 The most detailed and helpful responses will be eligible for the Product Feedback Incentive ($500 USDC in rewards) .
+Include:
+• Which Circle products you used (e.g. Arc, USDC, Circle Wallets, Circle Gateway, Circle CCTP/Bridge Kit, Nanopayments)
+• Why you chose these products for your use case
+• What worked well during development
+• What could be improved
+• Any recommendations to make the product or developer experience more seamless or scalable
+Please ensure your submission clearly states which challenge track you participated in and which Circle products were used .
+📸 Required: Transaction Flow Demonstration (Video)
+Your submission video must clearly demonstrate how a USDC transaction is processed end-to-end using Circle infrastructure and Arc settlement , including:
+• A transaction executed via the Circle Developer Console
+• Verification of that transaction on the Arc Block Explorer
+This helps judges validate correct integration and on-chain execution
+All submissions must demonstrate real per-action pricing (≤ $0.01), show transaction frequency data (at least 50+ onchain transactions in demo) and include a margin explanation: why this model would fail with traditional gas costs.
+For further details and guidance, please visit Submission Guidelines
+lablab.ai
+Topic: Hackathon Submissions Process
+▶️ Watch Video
+Judging Criteria
+Application of Technology
+How effectively the chosen model(s) are integrated into the solution.
+Presentation
+The clarity and effectiveness of the project presentation.
+Business Value
+The impact and practical value, considering how well it fits into business areas.
+Originality
+The uniqueness & creativity of the solution, highlighting approaches and ability to demonstrate behaviors.
+Hackathon Details
+Join lablab.ai hackathon and innovate using the latest models in the market. Discover all the relevant details below.
+🗓️ Where and when
+The start date of the hackathon is mentioned according to the date specified on the hackathon page, cover and schedule. The hackathon will take place on the lablab.ai platform and lablab.ai Discord server.
+🦸🏼‍♂️ Who can join?
+Everyone is welcome to participate, regardless of previous AI or coding experience! We encourage anyone with a passion for AI or an interest in exploring how it can be used in their field to join.
+😅 What about teams?
+If you don't have a team, don't worry! You can connect with other participants from all over the world on our dashboard or Discord server. We also recommend checking out our Discord server to find teammates and bounce around ideas. You can join the server here .
+🛠️ How to participate
+The hackathon will take place online on lablab.ai platform and lablab.ai Discord Server . Please register for both in order to participate. To participate click the "Enroll" button at the bottom of the page and read our Hackathon Guidelines and Getting Started Guide .
+🧠 Get prepared / Use Lablab.ai to Learn About AI
+To get ready for the hackathon, visit our AI Tech pages and read up on all the available technologies. You can also check out our tutorials page for more information on how to use them. Get a head start on your project by using the resources on lablab.ai!
+Speakers, Mentors & Judges
+Corey Cooper
+Senior Manager, Developer Relations and Ecosystem Marketing
+Evelina Kaluzhner
+Sr. Principal Product Manager
+Hui Jing Chen
+Senior Manager, Developer Relations and Ecosystem Marketing, APAC
+Mallika Rao
+Engineering Lead-Netflix, Walmart, Twitter
+Suneeth Maraboina
+Technology Leader
+Sanem Avcil
+AI & Blockchain Advisor
+Naman Goyal
+Machine Learning Engineer
+Pawel Czech
+CEO
+Neha Komma
+VP of Product, Payments
+Anthony Kelani
+Director of Ecosystem Growth & Strategy
+Shaktesh Pandey
+AI Engineer | GenAI Systems | RAG Architect | LLMOps
+Mahati Kumar
+Software Engineer
+Rahul Gupta
+Head of AI Foundry
+Zhipeng Yan
+Software Engineer
+Andrea Marazzi
+Founder & CCO
+Blessing Adesiji
+Developer Relations Manager, EMEA
+Karen Sheng
+Chief Product Officer
+Dharmendra Singh
+Senior Software Engineering Manager
+Vasu Raj Jain
+Senior Software Engineer
+Isaac Gemal
+Developer relations
+Japjit Singh
+Applied AI Product Lead
+Luca Franceschini
+Developer Relations
+Elton Tay
+Developer Relations Lead, APAC
+Aanjanaye Kajaria
+Founder & CEO
+Anton Kiselev
+Lead backend developer
+Neha Manjunath
+Senior Research Scientist
+Sergey Nuzhnyy
+Head of Developer Relations
+Santosh Mutyala
+Developer relations
+Pawel Czech
+CEO
+Blessing Adesiji
+Developer Relations Manager, EMEA
+Corey Cooper
+Senior Manager, Developer Relations and Ecosystem Marketing
+Neha Komma
+VP of Product, Payments
+Hui Jing Chen
+Senior Manager, Developer Relations and Ecosystem Marketing, APAC
+Karen Sheng
+Chief Product Officer
+Rahul Gupta
+Head of AI Foundry
+Sanem Avcil
+AI & Blockchain Advisor
+Shaktesh Pandey
+AI Engineer | GenAI Systems | RAG Architect | LLMOps
+Suneeth Maraboina
+Technology Leader
+Mahati Kumar
+Software Engineer
+Isaac Gemal
+Developer relations
+Andrea Marazzi
+Founder & CCO
+Luca Franceschini
+Developer Relations
+Anthony Kelani
+Director of Ecosystem Growth & Strategy
+Elton Tay
+Developer Relations Lead, APAC
+Evelina Kaluzhner
+Sr. Principal Product Manager
+Aanjanaye Kajaria
+Founder & CEO
+Mallika Rao
+Engineering Lead-Netflix, Walmart, Twitter
+Japjit Singh
+Applied AI Product Lead
+Neha Manjunath
+Senior Research Scientist
+Vasu Raj Jain
+Senior Software Engineer
+Dharmendra Singh
+Senior Software Engineering Manager
+Event Schedule
+To be announced
+Submitted concepts, prototypes and pitches
+Submissions from the teams participating in the Agentic Economy on Arc event and making it to the end 👊
+Arc ID: Unified Identity Service for Arc Network
+Arc ID is a decentralized naming service for the Arc Network. It allows users and AI agents to claim human-readable names (.arc, .agent) using native USDC, featuring high-speed resolution powered by Circle’s Smart Contract Platform APIs.
+OnchainBuilder
+Vercel
+Gemini 3 pro Gemini AI Claude Code
+Play video
+WeatherMesh
+WeatherMesh is a self-verifying weather data network that turns hyperlocal data into an economic asset.
+Every API query triggers a gasless USDC payment to data contributors
+SoloDB
+Arc Claude Code
+Play video
+AgentFloat
+AgentFloat is an AI agent marketplace where every micro-task settles in sub-cent USDC on Arc via x402, idle agent capital earns US Treasury yield via USYC, and agents are verified via ERC-8004 — the agent economy that pays for itself.
+BusyBrain Dev
+Vercel
+Arc Circle Groq + 1
+Play video
+ArkSkill Bot
+Telegram bot for Arc Testnet. It showcases Arc Skills for AI agents as one of the strongest solutions on the market for turning AI agents into real onchain operators, giving anyone a simple Telegram interface.
+ArcSkill_bot
+Arc Circle
+Play video
+Intercept
+Intercept is a real-time security layer that analyzes every AI agent payment before execution. 6-layer threat detection, x402 payment interception, and agent-to-agent trust verification — all settled on Arc with USDC micro-payments.
+Intercept
+Vercel
+Anthropic Claude
+Play video
+ArcSLA — Pay-Per-Call Marketplace for AI Agents
+Trustless pay-per-call marketplace where AI agents hire each other. Providers stake USDC and commit to an SLA; miss the deadline and the stake is slashed automatically on-chain. No arbiter, no custodian. Built on Arc Testnet.
+ArcSLA Agent Payments
+Vercel
+Anthropic Claude Arc
+Play video
+WizAgent - Autonomous Agentic Payroll
+WizAgent is an AI payroll ecosystem on Arc Network. Using Circle's Gas Abstraction, it enables single-batch payments for 50+ agents with $0 gas fees. Features include a real-time terminal and custom treasury routing.
+WizAgent
+Vercel
+Circle Arc Vercel
+Play video
+Istanbul Route AI. Silent Gemini agent on Arc
+A navigation app where a silent Gemini agent picks your route using live Istanbul municipal fleet data and pays for each signal in sub-cent USDC on Arc, zero popups, zero gas.
+IstanbulRoute
+Vercel
+Arc Gemini 3 Flash Claude Code
+Play video
+AgentCart
+AI shopping agent wallet paying every merchant API by the request in sub-cent USDC on Arc L1. 48+ signed EIP-3009 micropayments per search across 15 merchants. Only economically possible with Circle Nanopayments.
+AgentCart - g
+Vercel
+x402 Circle Arc + 2
+Play video
+AgentMarket
+AI Agent API Marketplace — per-action USDC payments via Circle Nanopayments + x402 on Arc Testnet. Every API call costs $0.001 USDC, settled gaslessly.
+AgentMarket
+Vercel
+Arc Circle x402 + 1
+Play video
+Rydlr Motion Studio (Movimento)
+Movimento turns AI motion generation into trustless micro-commerce: Gemini analyzes blends, Arc verifies novelty, and USDC nanotransactions settle per action so creators get paid instantly with sub-cent pricing at high frequency.
+movimento
+Circle Arc Gemini AI + 5
+Play video
+ArcTask
+ArcTask turns a user goal into atomic tasks, AI outputs, verification gates, and micro-bounty receipts, showing how an agentic economy can coordinate work through Arc-ready nano-payments.
+Rohab
+Vercel
+Play video
+NanoAI / Pay-Per-Question AI on Arc
+NanoAI lets anyone ask an AI question for $0.001 — paid instantly on-chain via MetaMask on Arc Testnet. No subscriptions, no accounts. Just connect your wallet, pay, and get your answer. Live proof that nanopayments for AI are economically viable.
+DEEP WEB4
+Vercel
+Anthropic Claude Vercel
+Play video
+Arcent Agent MCP
+17 MCP tools that let AI agents act on-chain on Arc — ERC-8004 identity, ERC-8183 escrow jobs, Circle Nanopayments via x402. Open source, MIT licensed.
+Arcent Agent MCP
+Anthropic Claude Claude Code Circle + 4
+Play video
+NanoDock
+Pay-per-molecule drug discovery marketplace on Arc. Four autonomous AI agents with ERC-8004 on-chain identities screen drug candidates for $0.01 USDC each, paying each other in real-time nanopayments. 100+ onchain transactions.
+Syncron Ai
+Anthropic Claude
+Play video
+AgentFlow — Live Economic Visibility for AI Agents
+A real-time AI agent marketplace where every action is priced, settled, and visible using sub-cent USDC micropayments on Arc, enabling agents to collaborate, compete, and transact economically on-chain.
+moreda only one memeber team
+Vercel
+AI Studio Arc Antigravity
+Play video
+Arcforge — Meme Launchpad on Arc
+Arcforge is a one-click meme coin launchpad built on Arc, powered by Circle's USDC and CCTP. Users can deploy a meme token with a fixed 1B supply and custom image instantly. 70+ coins already launched
+RAKIB HOSEN
+Vercel
+Circle Arc Vercel + 1
+Play video
+AgentInvoice
+Pay-per-use API middleware for AI agents.
+Wraps any API with Circle Nanopayments on Arc - agents autonomously pay $0.001 per call in USDC, no billing system, no subscriptions, no gas fees.
+Built in 48h.
+TheDuckSaysQuack
+Circle Arc Grok + 3
+Play video
+ArcPay Commerce Suite
+ArcPay Commerce Suite is a set of Arc-native x402 products where humans and agents connect a wallet, deposit USDC to Circle Gateway, and pay per action in real time for APIs, agent services, compute jobs, and micro-commerce flows.
+Nah i will win
+Vercel
+Arc Circle x402
+Play video
+oknice
+An absolutely fantastic project, I'm so happy to be a part of it until its resounding success.
+nhan
+replit
+AI21 Labs
+Play video
+Veliora: Agentic Biomedical Research Engine
+Veliora is a multi-agent biomedical research system for drug repurposing, built with Arc and Circle, that funds workflows in USDC, runs evidence-driven pipelines, and delivers structured, traceable research briefs.
+Bionexus
+Vercel
+Arc Circle x402 + 2
+Play video
+PayQuorum: Trustless Agent Labor Market on Arc
+5 autonomous AI agents hire each other, settle in USDC via on-chain escrow, build reputation, and enforce budgets — all at $0.005/action on Arc with Circle Nanopayments. 64+ real on-chain transactions per demo.
+PayQuorum
+Vercel
+Circle Gemini AI x402 + 1
+Play video
+PayClaw
+Autonomous onchain payroll on Arc. Fund the contract once, add wallet addresses and amounts — payments execute every 30 days with zero human input. No dashboard. No approvals. No one manually running payroll.
+PayClaw
+Vercel
+Arc Circle
+Play video
+Agent Economy
+Autonomous AI agents that negotiate prices and pay each other via Circle Nanopayments on Arc. 6 agents bid competitively, complete tasks, and settle sub-cent USDC payments instantly with zero gas fees.
+Vibe-Tech
+Vercel
+Circle Arc
+Play video
+ArcSwap
+ArcSwap is the native DEX on Arc Network, enabling swaps, cross-chain USDC via CCTP v2, and liquidity in one interface. It integrates a USYC Yield Vault, letting users deposit USDC, mint USYC, and earn real-world yield with on-chain liquidity.
+ArcSwap
+Opus GPT-4 Vision
+Play video
+Marketplace Jamaah AI
+WhatsApp-native AI marketplace for Indonesian Muslim communities — AI agents parse listings, match buyers & sellers, and settle payments in USYC on Arc. Live with 253 real users & 98 active listings.
+Marketplace Jamaah AI
+Gemini AI Circle
+Play video
+Agentic Economy Arc
+A nanopayments demo showcasing autonomous agent-to-agent USDC transactions, real-time settlement feeds, and margin analysis for machine-to-machine commerce.
+Quantum Nomads
+replit
+Replit OpenGPTs OpenAI + 3
+Play video
+Agent Prime Multi-Agent AI Commerce
+Agent Prime orchestrates complex tasks by hiring AI sub-agents, each paid $0.001 USDC on Arc Testnet via real-time nano-payments. One agent pays three agents autonomously. Economically impossible on L1 ($4.50 gas vs $0.003 revenue), viable only on Arc.
+Alpha Team
+Featherless AgentOps
+Play video
+AgenticTrade:The Commerce Layer for AI Agents
+AgenticTrade is an open-source AI service marketplace enabling autonomous agent-to-agent commerce on Arc. Using x402 nanopayments and Circle wallets, agents can hire domain experts for just $0.001 per call with zero gas fees.
+Judy AI Lab
+Arc Circle x402 + 2
+Play video
+‎Vision-Link Agentic Health Hub.
+‎An AI medical agent providing healthcare advice and economic solutions in Hausa for rural communities.
+VISION-LINK AI HUB
+Gemini AI Featherless
+Play video
+ArcPay — Four ways to get paid. One URL.
+USDC payments on Arc for creators, teams, and AI agents. One URL — arcpay.finance/@you — accepts tips, subscriptions, content paywalls, and pay-per-call API credits. 2% fee, 0.5s settlement, native USDC gas.
+ArcPay
+Vercel
+Arc Circle Claude Code + 1
+Play video
+AI Agent Registration Guide
+AI Agent Registration Guide on
+@arc
+this guide is easy to understand
+Arc is turning AI agents into:
+Onchain identities
+Reputation-backed entities
+Economic participants
+team jeet
+AgentOps
+Play video
+QAMesh
+Autonomous AI agent marketplace that audits web apps and settles per-action USDC rewards onchain via Circle + Arc.
+QAMesh
+Vercel
+Anthropic Claude Arc Circle + 4
+Play video
+Darwinia on Arc
+AI-driven genetic algorithm optimization as a service, settled with $0.001 USDC Nanopayments on Arc. Post a job, an autonomous agent evolves trading strategies, and you unlock results pay-per-insight via ERC-8183/8004 on-chain.
+Darwinia on Arc
+Vercel
+Arc Circle Claude Code + 1
+Play video
+Arc-watch-worthy
+🎬 Arc-Watch-Worthy is a stable coin powerd video streaming platform with granular nanopayments. Pay only for content that proves worthy. Unlock videos in seconds/minutes chunks on Arc Testnet using Circle SCA wallets.
+MetaMusk
+Vercel
+DeepSeek V3 Gemini 3 Flash
+Play video
+Arc Climate Pay
+Parametric weather insurance on Arc Network. Protect against climate risks — frost, heat, drought, rain and wind. AI agent analyzes live oracle data for 0.01 USDC and auto-generates on-chain USDC policies. Instant payout. No paperwork
+wentyom
+Arc Circle Groq + 4
+Play video
+AgentBazaar
+A live agent-to-agent marketplace where every message, tool call, and thought between specialist AI agents is a USDC nanopayment on Arc. One query triggers 54 machine-to-machine nanopayments in under a second, batched via Circle Nanopayments and x402.
+janneh2000
+Vercel
+Anthropic Claude Arc Circle + 3
+Play video
+Arc Data Economy — Autonomous AI Agent Marketplace
+5 autonomous AI agents create, execute, audit & settle data jobs onchain — gasless micropayments via Circle Nanopayments x402, 24/7 on Arc Testnet.
+DevDS
+Vercel
+Anthropic Claude Claude Code OpenAI + 4
+Play video
+ChatLevel — DTCC for AI's playing field
+Settlement layer for agent-to-agent commerce. Forecasting agents stake fractional-cent USDC and pay nanopayments to data agents for evidence; thousands of intraday sub-cent flows net-settle daily on Arc-DTCC-style clearing that makes nano economics real.
+ChatLevel - DTCC for AI playing field
+Arc Circle Claude Code + 1
+Play video
+Atlas Arc: Decentralized AI Agentic Economy
+A real-time agentic economy dashboard powered by Circle USDC on Arc L1. It enables autonomous agents to trade and settle AI compute resources using sub-cent nano payments ($0.0001), optimized by Random Forest demand prediction and protected by Z-Score
+ATLAS ARC
+AI/ML API AI Studio Antigravity + 13
+Play video
+PikaPay | Nanopayment tools
+Pay-per-use AI tools on Arc Testnet using USDC micropayments: start with Onchain Investment Analyst. Get institutional-grade crypto reports (risk scores, scenarios,support/resistance) for $0.015 USDC.No subscriptions, no sign ups just connect and pay once
+Poetic codes
+Vercel
+Circle Arc Vercel
+Play video
+Agent Swarm Task Market
+The Operating System for Agent Labor Markets: AI agents post, bid, execute, and settle micro-tasks in sub-cent USDC on Arc with ERC-8004 reputation and x402 programmable monetization.
+Merolav Tech
+Anthropic Claude Arc Circle + 3
+Play video
+ProofMesh Treasury Guard
+ProofMesh Treasury Guard is a programmable payout firewall for AI agents on Arc. Before capital moves, the agent buys three real proofs, issues a permit, and returns a treasury action to release, cap, hold, or block a payout.
+ProofMesh Treasury Guard
+Vercel
+Arc Circle Gemini AI + 3
+Play video
+FreelanceArc
+A decentralized freelance marketplace on Arc Network where every job is a smart contract, every payment is USDC locked in escrow, and the full lifecycle runs on-chain via ERC-8183.
+SearchandPay
+Vercel
+Anthropic Claude Vercel
+Play video
+GridMint
+GridMint: Real-time DePIN energy trading protocol on Arc Testnet. Autonomous solar, battery & consumer agents trade micro-energy using Circle USDC with 24,700× lower gas costs vs Ethereum. Live blockchain settlement with game theory pricing.
+GridMint AI-Powered Energy DePIN
+Vercel
+Arc Circle Gemini AI + 1
+Play video
+AgentSwarm - AI Agent-to-Agent Payment Marketplace
+4 AI agents autonomously trade NLP services on Arc using Circle Nanopayments at $0.001–$0.003/call. 3-way circular economy, 187 real transactions, 100% success rate. Sub-cent agent payments that are impossible with traditional gas fees.
+Captain
+Arc
+Play video
+Pay-As-You-Learn Academy
+Pay As You Learn is an AI-powered platform where students pay for courses based on their progress and performance, making education more affordable, flexible, and outcome-driven
+AI Orbit Team
+AI/ML API
+Play video
+Barzakh AI
+Barzakh AI orchestrates an autonomous M2M micro-economy on Arc. Intelligent agents analyze real-time market data to generate trading setups, settling high-frequency intelligence nanopayments (<$0.01) entirely on-chain smart wallets.
+Sirath Network
+Vercel
+Arc x402 Circle + 7
+Play video
+ArcWarden: Autonomous Security Oracle
+ArcWarden is an autonomous AI security agent for the ARC network. It provides real-time threat analysis, detects transaction splitting, manages treasury health, and evaluates service reputation to proactively safeguard the agentic economy.
+Omni
+Arc Antigravity Anthropic Claude + 1
+Play video
+NeuroPay — Pay-Per-Inference AI on Arc
+NeuroPay bills AI inference per token in USDC, settled gas-free on Arc via Circle Nanopayments. Real Llama 3.1 AI, sub-cent pricing ($0.0001–$0.01/call), agent-to-agent payments — the economic primitive the agentic economy needs.
+Innove X
+Arc Circle Groq + 1
+Play video
+Teams: Agentic Economy on Arc
+Check out the roster and find teams to join
+Vi
+just me and my code
+Proof of Payment
+Working on nano payment tooling
+Arc hunters
+Arc hunters will hunt arc task
+Catalina
+Mreow Mreow Mreow Mreow
+View all teams
+Footer navigation
+Unlocking state-of-the-art artificial intelligence and building with the world's talent
+LinkedIn
+Twitter/X
+Instagram
+Discord
+YouTube
+Twitch
+Other group brands:
+Links
+AI Tech
+AI Hackathons
+AI Tutorials
+AI Applications
+Surge
+AI Articles
+Writers
+lablab
+About
+Brand
+Hackathon Guidelines
+Terms of Use
+Code of Conduct
+Privacy Policy
+Get in touch
+Discord
+Sponsor
+Cooperation
+Contribute
+[email protected]
+© 2026 NativelyAI Inc. All rights reserved.
+2.26.2

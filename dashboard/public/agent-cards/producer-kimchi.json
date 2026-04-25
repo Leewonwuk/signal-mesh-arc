@@ -1,0 +1,46 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AlphaLoop / producer_kimchi",
+  "description": "Kimchi-premium signal producer (synthetic). AR(1) mean-reverting series modeling Upbit KRW vs Binance USDT premium. Clearly labeled synthetic in every payload — included as a third strategy option for the allocator, not as fabricated live data.",
+  "version": "1.0.0",
+  "registrations": [
+    {
+      "chainId": 5042002,
+      "agentAddress": "0x7f190347e5ea8fd40dd24ef5f67f33e813fcf27f",
+      "signatureScheme": "circle-sca-entity-secret",
+      "custodyModel": "circle-developer-controlled-wallet"
+    }
+  ],
+  "services": [
+    {
+      "name": "signals.publish",
+      "endpoint": "https://signal-mesh-bridge.fly.dev/signals/publish",
+      "protocol": "http-json",
+      "description": "Push synthetic kimchi-premium signals. Clearly flagged `synthetic: true`."
+    }
+  ],
+  "capabilities": {
+    "strategy": "kimchi-premium-synthetic",
+    "pricing": "variable-per-signal-quality",
+    "settlementUnit": "USDC",
+    "dataProvenance": "synthetic-AR1-seeded"
+  },
+  "supportedTrust": [
+    "reputation-via-realized-pnl"
+  ],
+  "reputation": {
+    "source": "https://signal-mesh-bridge.fly.dev/producer/reliability",
+    "scheme": "bayesian-shrunk-hit-rate",
+    "window": 200
+  },
+  "links": {
+    "github": "https://github.com/Leewonwuk/signal-mesh-arc",
+    "dashboard": "https://signal-mesh.vercel.app"
+  },
+  "metadata": {
+    "project": "AlphaLoop",
+    "track": "Agent-to-Agent Payment Loop",
+    "hackathon": "lablab.ai Agentic Economy on Arc · 2026-04",
+    "license": "MIT"
+  }
+}

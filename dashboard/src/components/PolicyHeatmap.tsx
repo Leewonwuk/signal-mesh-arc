@@ -163,6 +163,37 @@ export function PolicyHeatmap() {
 
       {hasData && (
         <>
+          {/* Regime axis legend — explains what the 9 row labels mean and which
+              lane is expected to dominate in each axis combination. Without
+              this, judges read "calm/cold/tight" as jargon and the row
+              choices look arbitrary. With it, the heatmap becomes evidence:
+              the learned policy puts ALL_V1 mass in hot-vol rows, ALL_V2 mass
+              in hot-funding rows, ALL_V3 mass in calm/cold rows — exactly the
+              regime → strategy mapping the RegimeMap card claims above. */}
+          <div className="heatmap-regime-axes">
+            <div className="heatmap-regime-axis">
+              <span className="heatmap-regime-axis-name">vol</span>
+              <span className="heatmap-regime-axis-vals">
+                <span>calm = 8h σ &lt; p65</span> · <span>hot = ≥ p65</span>
+              </span>
+              <span className="heatmap-regime-axis-impl">→ hot-vol favors <span className="lane-mark v1">v1 kimchi</span></span>
+            </div>
+            <div className="heatmap-regime-axis">
+              <span className="heatmap-regime-axis-name">funding</span>
+              <span className="heatmap-regime-axis-vals">
+                <span>cold = median &lt; p90</span> · <span>hot = ≥ p90</span>
+              </span>
+              <span className="heatmap-regime-axis-impl">→ hot-funding favors <span className="lane-mark v2">v2 dual</span></span>
+            </div>
+            <div className="heatmap-regime-axis">
+              <span className="heatmap-regime-axis-name">dislocation</span>
+              <span className="heatmap-regime-axis-vals">
+                <span>tight = kimchi &amp; usdc &lt; p50</span> · <span>wide = either ≥ p50</span>
+              </span>
+              <span className="heatmap-regime-axis-impl">→ calm/cold/tight favors <span className="lane-mark v3">v3 funding</span></span>
+            </div>
+          </div>
+
           <div className="heatmap-wrapper">
             {/* Column header row */}
             <div className="heatmap-col-headers">

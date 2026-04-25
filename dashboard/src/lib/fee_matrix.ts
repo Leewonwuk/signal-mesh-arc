@@ -190,7 +190,7 @@ export const EXCHANGE_FEE_MATRIX: Record<string, Exchange> = {
   coinbase: {
     id: 'coinbase',
     name: 'Coinbase Advanced',
-    tagline: 'Circle co-founder · NYSE-listed · stablepair 0.001%',
+    tagline: 'Circle co-founder · NYSE-listed · reference-only (no alt/USDT)',
     usRecognition: 5,
     circleIntegration: 5,
     supportsDualQuoteArb: false,
